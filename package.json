@@ -1,58 +1,37 @@
 {
-  "name": "@userscripters/template",
-  "version": "1.0.0",
-  "description": "template repository for userscripters' projects",
+  "name": "@userscripters/stackexchange-global-types",
+  "version": "0.0.1",
+  "description": "Type definitions for global Stack Exchange objects",
   "scripts": {
     "test": "mocha",
     "lint": "eslint src --fix --ext .js,.ts",
     "clean": "rm -rf dist",
     "prebuild": "npm run lint && npm run clean",
-    "uglify-modern": "uglifyjs dist/modern/* --compress --mangle -o dist/modern/index.min.js",
-    "uglify-legacy": "uglifyjs dist/legacy/* --compress --mangle -o dist/legacy/index.min.js",
-    "build-modern": "tsc --outDir dist/modern && npm run uglify-modern",
-    "build-legacy": "tsc --target es5 --outDir dist/legacy && npm run uglify-legacy",
-    "build-all": "bash ./scripts/build.sh",
-    "headers-tm": "bash ./scripts/headers.sh",
-    "readme": "generate-readme"
+    "readme": "generate-readme",
+    "postversion": "npm run readme"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/userscripters/template.git"
+    "url": "git+https://github.com/userscripters/stackexchange-global-types.git"
   },
   "keywords": [
     "userscripts",
-    "stackoverflow"
+    "stackoverflow",
+    "stack exchange",
+    "types"
   ],
   "author": {
-    "name": "Jane Doe",
-    "email": "jane@doe.com"
+    "name": "Oleg Valter",
+    "email": "oleg.a.valter@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "John Doe",
-      "email": "john@doe.com"
-    }
-  ],
+  "contributors": [],
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/userscripters/template/issues"
+    "url": "https://github.com/userscripters/stackexchange-global-types/issues"
   },
-  "homepage": "https://github.com/userscripters/template#readme",
+  "homepage": "https://github.com/userscripters/stackexchange-global-types#readme",
   "devDependencies": {
-    "@types/chai": "^4.2.21",
-    "@types/chai-as-promised": "^7.1.4",
-    "@types/mocha": "^8.2.3",
-    "@types/node": "^16.4.2",
-    "@typescript-eslint/eslint-plugin": "^4.28.4",
-    "@typescript-eslint/parser": "^4.28.4",
-    "@userscripters/generate-headers": "^1.6.4",
     "@userscripters/generate-readme": "^1.1.0",
-    "chai": "^4.3.4",
-    "chai-as-promised": "^7.1.1",
-    "eslint": "^7.31.0",
-    "mocha": "^9.0.2",
-    "ts-node": "^10.1.0",
-    "typescript": "^4.3.5",
-    "uglify-js": "^3.14.0"
+    "typescript": "^4.3.5"
   }
 }
