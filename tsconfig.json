@@ -5,6 +5,7 @@
         "skipLibCheck": true,
         "noEmit": true,
         "target": "es2019",
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "esModuleInterop": true
     }
 }
