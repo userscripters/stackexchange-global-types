@@ -73,7 +73,16 @@ declare global {
         ): void;
     }
 
+    // initial definition of the StackExchange global by double-beep https://github.com/double-beep from:
+    // https://github.com/SOBotics/AdvancedFlagging/blob/1945787f9d3d01b5aa84bc6cff3f1da358aaf8c0/src/GlobalVars.ts
+
     namespace StackExchange {
+        interface ModalType {
+            title: string;
+            bodyHtml: string;
+            buttonLabel: string;
+        }
+
         const helpers: {
             hideToasts(): void;
             isInNetwork(url: string): boolean;
