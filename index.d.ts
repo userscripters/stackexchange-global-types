@@ -1,4 +1,5 @@
 import "@stackoverflow/stacks/dist/js/stacks.js";
+import "jquery";
 
 declare global {
     namespace Stacks {
@@ -70,6 +71,100 @@ declare global {
             text: string,
             options?: TooltipOptions
         ): void;
+    }
+
+    namespace StackExchange {
+        const helpers: {
+            hideToasts(): void;
+            isInNetwork(url: string): boolean;
+            parseUrl(url: string): string;
+            showConfirmModal(modal: ModalType): Promise<boolean>;
+            showModal(popup: JQuery | Element | null): void;
+            showToast(
+                message: string,
+                info: { type: string; transientTimeout: number }
+            ): void;
+        };
+
+        interface UserInfo {
+            fkey: string;
+            userId: number;
+            isModerator: boolean;
+            isRegistered: boolean;
+            accountId: number;
+            canSeeDeletedPosts: boolean;
+            gravatar: string;
+            keyboardShortcuts: boolean;
+            profileUrl: string;
+            rep: number;
+            tid: string;
+            userType: number;
+        }
+
+        interface RealtimeInfo {
+            active: boolean;
+            newest: boolean;
+            tagged: boolean;
+            staleDisconnectIntervalInHours: number;
+        }
+
+        interface SiteInfo {
+            childUrl: string;
+            cookieDomain: string;
+            description: string;
+            enableNewTagCreationWarning: boolean;
+            enableSocialMediaInSharePopup: boolean;
+            id: number;
+            insertSpaceAfterNameTabCompletion: boolean;
+            isNoticesTabEnabled: boolean;
+            name: string;
+            negativeVoteScoreFloor: null;
+            protocol: "http" | "https";
+            styleCodeWithHighlightjs: boolean;
+        }
+
+        interface JobPreferences {
+            maxNumDeveloperRoles: number;
+            maxNumIndustries: number;
+        }
+
+        interface Story {
+            dislikedTagsMaxLength: number;
+            likedTagsMaxLength: number;
+            minCompleteBodyLength: number;
+        }
+
+        interface Events {
+            postEditionSection: { title: 1; body: 2; tags: 3 };
+            postType: { question: 1 };
+        }
+
+        const options: {
+            user: UserInfo;
+            jobPreferences: JobPreferences;
+            locale: string;
+            networkMetaHostname: string;
+            realtime: RealtimeInfo;
+            routeName: string;
+            serverTime: number;
+            serverTimeOffsetSec: number;
+            events: Events;
+            site: SiteInfo;
+            story: Story;
+            svgIconHash: string;
+            svgIconPath: string;
+        };
+        const comments: {
+            uiForPost(comments: JQuery): {
+                addShow(value1: boolean, value2: boolean): void;
+                showComments(
+                    value1: string,
+                    value2: string | null,
+                    value3: boolean,
+                    value4: boolean
+                ): void;
+            };
+        };
     }
 }
 
