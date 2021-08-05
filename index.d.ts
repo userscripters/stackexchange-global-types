@@ -2,6 +2,25 @@ import "@stackoverflow/stacks/dist/js/stacks.js";
 import "jquery";
 
 declare global {
+    namespace CHAT {
+        interface User {
+            canKick(): boolean;
+            canModerate(): boolean;
+            canSuperPing(): boolean;
+            canTalkDuringTimeout(): boolean;
+            getName(): string;
+            isLoggedIn(): boolean;
+            isOwner(): boolean;
+        }
+
+        const CURRENT_ROOM_ID: number;
+        const CURRENT_USER_ID: number;
+        const IS_LIVE_CHAT: boolean;
+        const IS_MOBILE: boolean;
+        const LIVE_CHAT_HOST_ID: number;
+        const user: User;
+    }
+
     namespace Stacks {
         class ModalController extends StacksController {
             toggle(dispatcher?: Event | Element | null): void;
