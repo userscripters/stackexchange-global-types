@@ -17,3 +17,15 @@ StackExchange.helpers.isInNetwork("stackoverflow.com");
 
 // $ExpectError
 StackExchange.helpers.isInNetwork();
+
+// $ExpectType number
+StackExchange.question.getQuestionId();
+
+// $ExpectType boolean
+StackExchange.question.canViewVoteCounts();
+
+// $ExpectError
+StackExchange.question.scrollToPost();
+
+// $ExpectType boolean
+StackExchange.question.scrollToPost(123456);

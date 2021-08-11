@@ -182,6 +182,7 @@ declare global {
             svgIconHash: string;
             svgIconPath: string;
         };
+
         const comments: {
             uiForPost(comments: JQuery): {
                 addShow(value1: boolean, value2: boolean): void;
@@ -192,6 +193,12 @@ declare global {
                     value4: boolean
                 ): void;
             };
+        };
+
+        const question: {
+            getQuestionId(): number;
+            canViewVoteCounts(): boolean;
+            scrollToPost(postId: number): boolean;
         };
     }
 }
