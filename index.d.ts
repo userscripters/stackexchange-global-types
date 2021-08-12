@@ -38,6 +38,10 @@ declare global {
     }
 
     namespace Stacks {
+        type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
+        // Minimum TypeScript Version: 3.9
+        type AllPlacements = BasicPlacement | `${BasicPlacement}-start` | `${BasicPlacement}-end`;
+
         class ModalController extends StacksController {
             /** Toggles the visibility of the modal */
             toggle(dispatcher?: Event | Element | null): void;
@@ -85,7 +89,7 @@ declare global {
             /** When true, the `click->s-popover#toggle` action will be attached to the controller element or reference element */
             toggleOnClick?: boolean;
             /** When set, `data-s-popover-placement` will be set to this value on the controller element */
-            placement?: string;
+            placement?: AllPlacements;
             /** When true, the popover will appear immediately when the controller connects */
             autoShow?: boolean;
         }
@@ -156,7 +160,7 @@ declare global {
 
         interface TooltipOptions {
             /** The position to place the tooltip */
-            placement: string;
+            placement: AllPlacements;
         }
 
         /**
