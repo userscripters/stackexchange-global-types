@@ -39,7 +39,7 @@ declare global {
 
     namespace Stacks {
         type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
-        // Minimum TypeScript Version: 3.9
+        // Minimum TypeScript Version: 4.1
         type AllPlacements =
             | BasicPlacement
             | `${BasicPlacement}-start`
