@@ -21,7 +21,12 @@
     "name": "Oleg Valter",
     "email": "oleg.a.valter@gmail.com"
   },
-  "contributors": [],
+  "contributors": [
+    {
+      "name": "Double Beep",
+      "url": "https://github.com/double-beep"
+    }
+  ],
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/userscripters/stackexchange-global-types/issues"
