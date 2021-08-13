@@ -244,7 +244,7 @@ declare global {
             /** If true, the toast will fade away on its own after a short while (default is true) */
             transient: boolean;
             /** How long the toast will fade in ms (default is 20000) */
-            transientTimeout: boolean;
+            transientTimeout: number;
             /** An array of action buttons */
             actions: ToastActions[];
         }
