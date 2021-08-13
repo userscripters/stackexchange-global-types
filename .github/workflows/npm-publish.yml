@@ -24,7 +24,6 @@ jobs:
                   NODE_AUTH_TOKEN: ${{secrets.PAT}}
 
     publish-npm:
-        needs: build
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -40,7 +39,7 @@ jobs:
                   NODE_AUTH_TOKEN: ${{github.token}}
             - run: |
                   npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-                  declare temp_npmrc="/home/runner/work/generate-headers/generate-headers/.npmrc"
+                  declare temp_npmrc="/home/runner/work/stackexchange-global-types/stackexchange-global-types/.npmrc"
                   truncate $temp_npmrc -s 0
                   echo "@${{github.repository_owner}}:registry=https://registry.npmjs.org" >> $temp_npmrc
                   npm publish --access public
