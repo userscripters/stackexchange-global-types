@@ -305,6 +305,35 @@ declare global {
              */
             scrollToPost(postId: number): boolean;
         };
+
+        interface AccountSettings {
+            currentPasswordRequiredForChangingStackIdPassword: boolean;
+        }
+
+        interface FlagSettings {
+            allowRetractingCommentFlags: boolean;
+            allowRetractingFlags: boolean;
+        }
+
+        interface MarkdownSettings {
+            enableTables: boolean;
+        }
+
+        interface SiteSettings {
+            allowImageUploads: boolean;
+            enableImgurHttps: boolean;
+            enableUserHovercards: boolean;
+            forceHttpsImages: boolean;
+            styleCode: boolean;
+        }
+
+        /** Site settings */
+        const settings: {
+            accounts: AccountSettings;
+            flags: FlagSettings;
+            markdown: MarkdownSettings;
+            site: SiteSettings;
+        };
     }
 }
 

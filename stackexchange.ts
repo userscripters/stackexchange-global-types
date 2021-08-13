@@ -29,3 +29,17 @@ StackExchange.question.scrollToPost();
 
 // $ExpectType boolean
 StackExchange.question.scrollToPost(123456);
+
+const { settings } = StackExchange;
+
+// $ExpectType AccountSettings
+settings.accounts;
+
+// $ExpectType FlagSettings
+settings.flags;
+
+// $ExpectType MarkdownSettings
+settings.markdown;
+
+// $ExpectType SiteSettings
+settings.site;
