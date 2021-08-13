@@ -1,6 +1,8 @@
 import "@stackoverflow/stacks/dist/js/stacks.js";
 import "jquery";
 
+// Minimum TypeScript Version: 4.1
+
 declare global {
     namespace CHAT {
         interface User {
@@ -39,8 +41,10 @@ declare global {
 
     namespace Stacks {
         type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
-        // Minimum TypeScript Version: 3.9
-        type AllPlacements = BasicPlacement | `${BasicPlacement}-start` | `${BasicPlacement}-end`;
+        type AllPlacements =
+            | BasicPlacement
+            | `${BasicPlacement}-start`
+            | `${BasicPlacement}-end`;
 
         class ModalController extends StacksController {
             /** Toggles the visibility of the modal */
