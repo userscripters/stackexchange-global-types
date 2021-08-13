@@ -39,7 +39,7 @@ declare global {
 
     namespace Stacks {
         type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
-        // Minimum TypeScript Version: 4.1
+        // Minimum TypeScript Version: 3.9
         type AllPlacements =
             | BasicPlacement
             | `${BasicPlacement}-start`
@@ -195,36 +195,128 @@ declare global {
 
     namespace StackExchange {
         interface ModalType {
+            /** The modal's title */
             title: string;
+            /** The modal's HTML body */
             bodyHtml: string;
+            /** The text of the primary button in the modal's footer */
             buttonLabel: string;
         }
 
+        interface ShowModalOptions {
+            /** Whether to fade out and remove any Stacks modals in the body */
+            closeOthers: boolean;
+            /** The element to return focus to when the modal is closed */
+            returnElements: JQuery;
+            /** Function that will be called after the modal has been displayed */
+            shown: () => void;
+            /** Function that will be called if the message is dismissed by pressing escape */
+            dismissing: () => void;
+            /** Function that will be called right before the modal is displayed */
+            showing: () => void;
+            /** Function that will be bound to the modal's fadeOutAndRemove()'s 'removing' event */
+            removing: () => void;
+        }
+
+        interface ToastActions {
+            /** The button's HTML content */
+            labelContent: JQuery;
+            /** Function that is called when the button is clicked */
+            click: () => void;
+            /** The button's aria-label attribute */
+            ariaLabel: string;
+            /** Space-separated button classes */
+            jsClass: string;
+        }
+
+        interface ShowToastOptions {
+            /** The color/style of the toast (default is info) */
+            type: "info" | "success" | "warning" | "danger";
+            /** Whether the popup can be dismissed (default is true) */
+            dismissable: boolean;
+            // SE uses $toast.appendTo($parent), so this is not necessarily a jQuery element
+            // however we assume it is intended to be one because of the $
+            // and a $parent.length === 0 if condition
+            /** The element to append the toast to */
+            $parent: JQuery;
+            /** Used to find the closest s-modal element to append the toast to */
+            $source: JQuery;
+            /** If true, the toast will fade away on its own after a short while (default is true) */
+            transient: boolean;
+            /** How long the toast will fade in ms (default is 20000) */
+            transientTimeout: boolean;
+            /** An array of action buttons */
+            actions: ToastActions[];
+        }
+
         const helpers: {
+            /** Hides any visible toasts from the page */
             hideToasts(): void;
+            /**
+             * Returns true if the parameter url's host is in the Stack Exchange network
+             * @param url The URL to check
+             */
             isInNetwork(url: string): boolean;
-            parseUrl(url: string): string;
-            showConfirmModal(modal: ModalType): Promise<boolean>;
-            showModal(popup: JQuery | Element | null): void;
+            /**
+             * Returns an anchor element whose href is the given URL
+             * @param url The URL
+             */
+            parseUrl(url: string): HTMLAnchorElement;
+            /**
+             * Shows a Stacks confirmation modal
+             * @param modalOptions The modal options
+             */
+            showConfirmModal(modalOptions: ModalType): Promise<boolean>;
+            /**
+             * Shows a modal that already exists in the DOM
+             * @param elementOrSelector The modal's HTML element or its selector
+             */
+            showModal(
+                elementOrSelector: string | JQuery | Element | null,
+                displayOptions?: Partial<ShowModalOptions>
+            ): void;
+            /**
+             * Shows a Stacks toast
+             * @param messageHtml The message's HTML content
+             * @param toastOptions Some toast options
+             */
             showToast(
-                message: string,
-                info: { type: string; transientTimeout: number }
+                messageHtml: string,
+                toastOptions: Partial<ShowToastOptions>
             ): void;
         };
 
+        // NOTE: optional fields do not appear if the user has logged out
         interface UserInfo {
+            /** The StackExchange fkey */
             fkey: string;
-            userId: number;
-            isModerator: boolean;
-            isRegistered: boolean;
-            accountId: number;
-            canSeeDeletedPosts: boolean;
-            gravatar: string;
-            keyboardShortcuts: boolean;
-            profileUrl: string;
+            /** The current user's current id (doesn't exist if the user is anonymous) */
+            userId?: number;
+            /** Whether the current user is a moderator */
+            isModerator?: boolean;
+            /** Whether the current user is registered */
+            isRegistered?: boolean;
+            /** The current user's StackExchange account id */
+            accountId?: number;
+            /** Whether the user has the privilege to see deleted posts */
+            canSeeDeletedPosts?: boolean;
+            /** The user's gravatar element stringified */
+            gravatar?: string;
+            /** Whether keyboard shortcuts are enabled. See {@link https://meta.stackexchange.com/q/237166|the official announcement} */
+            keyboardShortcuts?: boolean;
+            /** The current user's profile URL */
+            profileUrl?: string;
+            /** The current user's reputation (0 for anonymous users) */
             rep: number;
+            /** Tracking id, used for tracking with Google Analytics */
             tid: string;
-            userType: number;
+            /** The current user's type */
+            userType?: number;
+            // following two do not exist if the user is logged in!!
+            /** Whether the user is anonymous */
+            isAnonymous?: boolean;
+            /** Whether the user is anonymous network-wide */
+            isAnonymousNetworkWide?: boolean;
         }
 
         interface RealtimeInfo {
