@@ -35,7 +35,7 @@
   "homepage": "https://github.com/userscripters/stackexchange-global-types#readme",
   "devDependencies": {
     "@userscripters/generate-readme": "^1.1.0",
-    "dtslint": "^3.4.2",
+    "dtslint": "3.4.2",
     "typescript": "^4.3.5"
   },
   "types": "./index.d.ts",
