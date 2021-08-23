@@ -320,67 +320,131 @@ declare global {
         }
 
         interface RealtimeInfo {
+            /** Whether to listen to active questions via the websocket */
             active: boolean;
+            /** Whether to listen to new questions via the websocket */
             newest: boolean;
+            /** Whether to listen to tag-related websocket events */
             tagged: boolean;
+            /** Number of hours to disconnect websocket connection if it is stale */
             staleDisconnectIntervalInHours: number;
         }
 
         interface SiteInfo {
-            childUrl: string;
+            /** The meta site that corresponds to the current main one (doesn't exist if the current site is a meta site) */
+            childUrl?: string;
+            /** The domain of the cookies SE uses */
             cookieDomain: string;
+            /** A short description of the site */
             description: string;
+            /** Whether to show a warning if a new tag is about to be created */
             enableNewTagCreationWarning: boolean;
+            /** Whether to enable social media sharing in the "Share" popup */
             enableSocialMediaInSharePopup: boolean;
+            /** The current site's id */
             id: number;
+            /** Whether to insert a space after the auto-completed name of a user in the comment box */
             insertSpaceAfterNameTabCompletion: boolean;
-            isNoticesTabEnabled: boolean;
+            /** Whether the current site is the meta site of a main one */
+            isChildMeta?: boolean;
+            /** Whether the current site is a meta site */
+            isMetaSite?: boolean;
+            isNoticesTabEnabled: boolean; // unused?
+            /** The current site's name */
             name: string;
-            negativeVoteScoreFloor: null;
+            /** Used to normalise a post's score. */
+            negativeVoteScoreFloor: number | null;
+            /** The main's site URL, only exists if isChildMeta is true */
+            parentUrl?: string;
+            /** The current site's protocol */
             protocol: "http" | "https";
+            /** Whether to highlight the code using highlight.js in the current site */
             styleCodeWithHighlightjs: boolean;
         }
 
         interface JobPreferences {
+            /** Maximum number of developer roles */
             maxNumDeveloperRoles: number;
+            /** Maximum number of industries */
             maxNumIndustries: number;
         }
 
         interface Story {
+            /** Max length of disliked technologies */
             dislikedTagsMaxLength: number;
+            /** Max length of disliked technologies */
             likedTagsMaxLength: number;
+            /** The minimum body length of various description textareas */
             minCompleteBodyLength: number;
         }
 
         interface Events {
-            postEditionSection: { title: 1; body: 2; tags: 3 };
-            postType: { question: 1 };
+            postEditionSection: {
+                title: 1;
+                body: 2;
+                tags: 3
+            };
+            postType: {
+                question: 1
+            };
         }
 
         const options: {
+            /** Information about the current user */
             user: UserInfo;
+            /** Current user's job preferences */
             jobPreferences: JobPreferences;
+            /** The language code of the locale */
             locale: string;
+            /** The hostname of Meta StackExchange */
             networkMetaHostname: string;
+            /** Websocket-related constants */
             realtime: RealtimeInfo;
+            /** The route name of the current page (e.g. Home/Index) */
             routeName: string;
+            /** The Unix epoch time in seconds */
             serverTime: number;
+            /** Server's time offset in seconds */
             serverTimeOffsetSec: number;
+            /** Event-related constants */
             events: Events;
+            /** Information about the current site */
             site: SiteInfo;
+            /** Constants regarding the user's bio */
             story: Story;
+            /** StackExchange's SVGs hash */
             svgIconHash: string;
+            /** The remote URL StackExchange fetches the SVGs from */
             svgIconPath: string;
         };
 
         const comments: {
-            uiForPost(comments: JQuery): {
-                addShow(value1: boolean, value2: boolean): void;
+            /**
+             * Useful helpers related to a post's comments
+             * @param elOrJQueryOrSelector The comments container HTML element, selector or jQuery object
+             */
+            uiForPost(elOrJQueryOrSelector: string | JQuery | HTMLDivElement): {
+                /**
+                 * Show all hidden comments (if any)
+                 * @param noFocus If true, the input won't be focused
+                 * @param shouldRenderAddForm Whether to show the "Add a comment" textarea
+                 */
+                addShow(
+                    noFocus: boolean,
+                    shouldRenderAddForm: boolean
+                ): void;
+                /**
+                 *
+                 * @param htmlOrJQuery The new comments as an HTML string or a jQuery object
+                 * @param submittedEditCommentId The submitted comment id (if one has been posted)
+                 * @param noHighlighting If true, the unhidden comments won't be highlighted
+                 * @param noScrolling Whether to scroll to the comments container
+                 */
                 showComments(
-                    value1: string,
-                    value2: string | null,
-                    value3: boolean,
-                    value4: boolean
+                    htmlOrJQuery: string | JQuery,
+                    submittedEditCommentId: string | null,
+                    noHighlighting: boolean,
+                    noScrolling: boolean
                 ): void;
             };
         };
@@ -398,31 +462,44 @@ declare global {
         };
 
         interface AccountSettings {
+            /** Whether the current account's password is required for changing Stack id password */
             currentPasswordRequiredForChangingStackIdPassword: boolean;
         }
 
         interface FlagSettings {
+            /** Whether retracting comment flags is allowed */
             allowRetractingCommentFlags: boolean;
+            /** Whether retracting post flags is allowed */
             allowRetractingFlags: boolean;
         }
 
         interface MarkdownSettings {
+            /** Whether table formatting is allowed */
             enableTables: boolean;
         }
 
         interface SiteSettings {
+            /** Whether image uploads are allowed */
             allowImageUploads: boolean;
+            /** Whether imgur HTTPS is enabled  */
             enableImgurHttps: boolean;
+            /** Whether expanded user cards are enabled */
             enableUserHovercards: boolean;
+            /** Whether to force HTTPS on images */
             forceHttpsImages: boolean;
+            /** Whether to highlight the code */
             styleCode: boolean;
         }
 
         /** Site settings */
         const settings: {
+            /** Constants related to the current StackExchange account */
             accounts: AccountSettings;
+            /** Constants related to flags */
             flags: FlagSettings;
+            /** Constants related to the markdown parser */
             markdown: MarkdownSettings;
+            /** Constants related to the current site */
             site: SiteSettings;
         };
     }
