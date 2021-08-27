@@ -186,9 +186,9 @@ declare global {
          * Add the given callback to a list. Callbacks are fired on a new event
          * @param callback The callback to add
          */
-        const addEventHandlerHook: (callback: (eventInfo?: NewEvent, value1: boolean, value2: number) => void) => void;
+        const addEventHandlerHook: (callback: (eventInfo: NewEvent, value1: boolean, value2: number) => void) => void;
         /** Get the list of callbacks */
-        const getEventHandlerHooks: () => Array<(eventInfo?: NewEvent, value1: boolean, value2: number) => void>;
+        const getEventHandlerHooks: () => Array<(eventInfo: NewEvent, value1: boolean, value2: number) => void>;
         /** Information about the current user */
         const user: User;
         /** Input hint helpers */

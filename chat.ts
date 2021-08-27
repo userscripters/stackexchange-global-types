@@ -1,35 +1,65 @@
 // $ExpectType boolean
 CHAT.user.canTalkDuringTimeout();
 
-// $ExpectType boolean
-CHAT.user.canSuperPing();
-
-// $ExpectType boolean
-CHAT.user.canModerate();
-
-// $ExpectType boolean
-CHAT.user.canKick();
-
-// $ExpectType boolean
-CHAT.user.isOwner();
-
-// $ExpectType boolean
-CHAT.user.isLoggedIn();
-
 // $ExpectType string
 CHAT.user.getName();
 
 // $ExpectType number
 CHAT.LIVE_CHAT_HOST_ID;
 
-// $ExpectType number
-CHAT.CURRENT_ROOM_ID;
-
-// $ExpectType number
-CHAT.CURRENT_USER_ID;
-
 // $ExpectType boolean
 CHAT.IS_MOBILE;
 
+// $ExpectType Promise<UserInformation>
+CHAT.RoomUsers.get(1);
+
+// $ExpectType void
+CHAT.RoomUsers.forceUpdate(1);
+
+// $ExpectType void
+CHAT.RoomUsers.sidebarActivity(1, "Jeff Atwood", true, Date.now() / 1000, "abcd");
+
+// $ExpectType UserInformation[]
+CHAT.RoomUsers.all();
+
+// $ExpectType JQuery<HTMLElement>
+CHAT.RoomUsers.createAvatarImage(1, 8);
+
+const exampleUser = CHAT.RoomUsers.current();
+// $ExpectType UserInformation
+exampleUser;
+
+// $ExpectType number
+exampleUser.id;
+
+// $ExpectType string
+exampleUser.name;
+
 // $ExpectType boolean
-CHAT.IS_LIVE_CHAT;
+exampleUser.is_moderator;
+
+// $ExpectError
+CHAT.inputHint.show("content", "I'm done", "abc");
+
+// $ExpectType void
+CHAT.switchMobile("on");
+
+// $ExpectError
+CHAT.switchMobile("enable");
+
+// $ExpectType void
+CHAT.addEventHandlerHook((event, value1, value2) => {
+    // $ExpectType number
+    event.id;
+    // $ExpectType number
+    event.message_id;
+    // $ExpectType string
+    event.user_name;
+    // $ExpectType boolean | undefined
+    event?.show_parent;
+
+    // $ExpectType boolean
+    value1;
+    // $ExpectType number
+    value2;
+});
