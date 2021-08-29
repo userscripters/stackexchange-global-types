@@ -30,6 +30,18 @@ StackExchange.question.scrollToPost();
 // $ExpectType boolean
 StackExchange.question.scrollToPost(123456);
 
+// $ExcpectType void
+StackExchange.ready(() => 42);
+
+// $ExcpectType void
+StackExchange.gaReady(() => console.log("loaded"));
+
+// $ExpectError
+StackExchange.ready();
+
+// $ExpectError
+StackExchange.gaReady();
+
 const { settings } = StackExchange;
 
 // $ExpectType AccountSettings

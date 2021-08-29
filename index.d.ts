@@ -63,10 +63,7 @@ declare global {
              * @param userId The user's id
              * @param imageSize The size of the image
              */
-            createAvatarImage(
-                userId: number,
-                imageSize: number
-            ): JQuery;
+            createAvatarImage(userId: number, imageSize: number): JQuery;
             /** Information about the current user */
             current(): UserInformation;
             /**
@@ -186,9 +183,17 @@ declare global {
          * Add the given callback to a list. Callbacks are fired on a new event
          * @param callback The callback to add
          */
-        const addEventHandlerHook: (callback: (eventInfo: NewEvent, value1: boolean, value2: number) => void) => void;
+        const addEventHandlerHook: (
+            callback: (
+                eventInfo: NewEvent,
+                value1: boolean,
+                value2: number
+            ) => void
+        ) => void;
         /** Get the list of callbacks */
-        const getEventHandlerHooks: () => Array<(eventInfo: NewEvent, value1: boolean, value2: number) => void>;
+        const getEventHandlerHooks: () => Array<
+            (eventInfo: NewEvent, value1: boolean, value2: number) => void
+        >;
         /** Information about the current user */
         const user: User;
         /** Input hint helpers */
@@ -558,10 +563,10 @@ declare global {
             postEditionSection: {
                 title: 1;
                 body: 2;
-                tags: 3
+                tags: 3;
             };
             postType: {
-                question: 1
+                question: 1;
             };
         }
 
@@ -605,10 +610,7 @@ declare global {
                  * @param noFocus If true, the input won't be focused
                  * @param shouldRenderAddForm Whether to show the "Add a comment" textarea
                  */
-                addShow(
-                    noFocus: boolean,
-                    shouldRenderAddForm: boolean
-                ): void;
+                addShow(noFocus: boolean, shouldRenderAddForm: boolean): void;
                 /**
                  *
                  * @param htmlOrJQuery The new comments as an HTML string or a jQuery object
@@ -678,6 +680,18 @@ declare global {
             /** Constants related to the current site */
             site: SiteSettings;
         };
+
+        /**
+         * Defers execution of a callback until StackExchange is ready
+         * @param callback callback to defer
+         */
+        function ready(callback: () => void): void;
+
+        /**
+         * Defers exectuion of a callback until Google Analytics is ready
+         * @param callback callback to defer
+         */
+        function gaReady(callback: () => void): void;
     }
 }
 
