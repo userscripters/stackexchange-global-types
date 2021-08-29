@@ -29,8 +29,10 @@ jobs:
             - name: Install updated dependencies & update lockfile
               if: success()
               run: |
-                  npm install
+                  npm install --production=false
                   npm update
+              env:
+                  NODE_ENV: production
             - name: Make sure everything's ok
               run: npm test
             - name: Push changes to GitHub
