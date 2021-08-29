@@ -29,14 +29,23 @@ const exampleUser = CHAT.RoomUsers.current();
 // $ExpectType UserInformation
 exampleUser;
 
+// $ExpectType string
+exampleUser.email_hash;
+
 // $ExpectType number
 exampleUser.id;
 
 // $ExpectType string
 exampleUser.name;
 
+// $ExpectType number
+exampleUser.reputation;
+
 // $ExpectType boolean
 exampleUser.is_moderator;
+
+// $ExpectType boolean
+exampleUser.is_owner;
 
 // $ExpectError
 CHAT.inputHint.show("content", "I'm done", "abc");
