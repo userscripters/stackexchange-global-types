@@ -23,6 +23,152 @@ declare global {
             isOwner(): boolean;
         }
 
+        interface UserInformation {
+            /** The user's id */
+            id: number;
+            /** The user's name */
+            name: string;
+            /** The user's email hash */
+            email_hash: string;
+            /** The user's reputation */
+            reputation: number;
+            /** Whether the user is a moderator */
+            is_moderator: boolean;
+            /** Whether the user can moderate */
+            can_moderate: boolean;
+            /** Whether the user is a RO */
+            is_owner: boolean;
+            /** The date the user last posted (Unix epoch time in seconds) */
+            last_post: number | null;
+            complete: boolean;
+            /** The last time the server was updated (Unix epoch time in seconds) */
+            last_server_refresh: number;
+            /** Whether the user is present in the current room */
+            is_present: boolean;
+            /** Last time the user was seen (Unix epoch time in seconds) */
+            last_seen: number | null;
+        }
+
+        interface RoomUsersInfo {
+            // not all of those return UserInformation[] - SE has created its own class, Generator
+            // which implements most of the array methods
+            /** Get all pingable users */
+            all(): UserInformation[];
+            /** Get all pingable users, includings those whose "complete" value is false */
+            allIncludeIncomplete(): UserInformation[];
+            /** Get all present users */
+            allPresent(): UserInformation[];
+            /**
+             * Get the avatar image of a particular user as a jQuery object
+             * @param userId The user's id
+             * @param imageSize The size of the image
+             */
+            createAvatarImage(
+                userId: number,
+                imageSize: number
+            ): JQuery;
+            /** Information about the current user */
+            current(): UserInformation;
+            /**
+             * Update a particular user's information from server
+             * @param userId The user's id
+             */
+            forceUpdate(userId: number): void;
+            /**
+             * Update a particular user's information from server only if necessary
+             * @param userId The user's id
+             */
+            forceUpdateIfNecessary(userId: number): void;
+            /**
+             * Get information about a particular user
+             * @param userId The user's id
+             */
+            get(userId: number): Promise<UserInformation>;
+            /**
+             * Get information about a particular user only if it's already been fetched
+             * @param userId The user's id
+             */
+            getIfAvailable(userId: number): UserInformation | void;
+            /**
+             * Request information from server about a user that has just joined
+             */
+            initPresent(): void;
+            /** Update list of pingable users */
+            initializeLate(element: JQuery): void;
+            /** Load all pingable users and update cached information */
+            loadPingables(): void;
+            /**
+             * Get the monologue signature of a particular user
+             * @param userId The user's id
+             */
+            monologueSignature(userId: number): JQuery;
+            // on(): void; // adds the given callback to $.Callbacks() ??
+            /** Get all pingable users, includings those whose "complete" value is false */
+            pingableUsersIncludeIncomplete(): UserInformation[];
+            /**
+             * Update a user's activity information in the sidebar
+             * @param userId The user's id
+             * @param username The user's name
+             * @param isUserJoining Whether the user has just joined
+             * @param dateSeconds The Unix epoch time in seconds
+             * @param emailHash The user's email hash
+             */
+            sidebarActivity(
+                userId: number,
+                username: string,
+                isUserJoining: boolean,
+                dateSeconds: number,
+                emailHash: string
+            ): void;
+            /**
+             * Trigger the remove effect on a user currently present in the room
+             * @param userId The user's id
+             */
+            sidebarLeave(userId: number): void;
+            /**
+             * Fire a callback from ROOM_USERS_HANDLERS
+             * @param callbackName The callback's name
+             */
+            trigger(callbackName: string): void;
+            // update(): unknown;
+            /**
+             * Update all containers for the given user from server, using the ".user-container.user-<userId>" selector
+             * @param userInformation The user information object
+             */
+            updateAllUserContainersFor(userInformation: UserInformation): void;
+            /**
+             * Update the given user container information from server
+             * @param userContainer The user container jQuery object
+             */
+            updateUserContainer(userContainer: JQuery): void;
+        }
+
+        // TODO expand on those
+        interface NewEvent {
+            /** The event id */
+            event_type: number;
+            /** The message content as HTML */
+            content?: string;
+            id: number;
+            /** The message id */
+            message_id: number;
+            /** The room id the event happened */
+            room_id: number;
+            /** The name of the room the event happened */
+            room_name: string;
+            /** When the event was triggered (Unix epoch time in seconds) */
+            time_stamp: number;
+            /** The id of the user that triggered the event */
+            user_id: number;
+            /** The name of the user that triggered the event */
+            user_name: string;
+            /** The number of times the message has been edited */
+            message_edits?: number;
+            /** The message to which the current one replies */
+            parent_id?: number;
+            show_parent?: boolean;
+        }
+
         /** The id of the current chat room */
         const CURRENT_ROOM_ID: number;
         /** The id of the current user */
@@ -33,8 +179,38 @@ declare global {
         const IS_MOBILE: boolean;
         /** The user id of the host of the "live chat room" (0 if IS_LIVE_CHAT is false) */
         const LIVE_CHAT_HOST_ID: number;
+
+        /** Information about the current room users */
+        const RoomUsers: RoomUsersInfo;
+        /**
+         * Add the given callback to a list. Callbacks are fired on a new event
+         * @param callback The callback to add
+         */
+        const addEventHandlerHook: (callback: (eventInfo: NewEvent, value1: boolean, value2: number) => void) => void;
+        /** Get the list of callbacks */
+        const getEventHandlerHooks: () => Array<(eventInfo: NewEvent, value1: boolean, value2: number) => void>;
         /** Information about the current user */
         const user: User;
+        /** Input hint helpers */
+        const inputHint: {
+            /**
+             * Show the input hint bubble
+             * @param content The bubble's HTML content
+             * @param buttonText The primary button's text content
+             * @param setPrefValue The value of the data-set-pref attribute
+             */
+            show(
+                content: string,
+                buttonText: string,
+                setPrefValue: number
+            ): void;
+        };
+
+        /**
+         * Toggle mobile view
+         * @param state The new state
+         */
+        const switchMobile: (state: "on" | "off") => void;
     }
 
     namespace Stacks {
@@ -320,67 +496,131 @@ declare global {
         }
 
         interface RealtimeInfo {
+            /** Whether to listen to active questions via the websocket */
             active: boolean;
+            /** Whether to listen to new questions via the websocket */
             newest: boolean;
+            /** Whether to listen to tag-related websocket events */
             tagged: boolean;
+            /** Number of hours to disconnect websocket connection if it is stale */
             staleDisconnectIntervalInHours: number;
         }
 
         interface SiteInfo {
-            childUrl: string;
+            /** The meta site that corresponds to the current main one (doesn't exist if the current site is a meta site) */
+            childUrl?: string;
+            /** The domain of the cookies SE uses */
             cookieDomain: string;
+            /** A short description of the site */
             description: string;
+            /** Whether to show a warning if a new tag is about to be created */
             enableNewTagCreationWarning: boolean;
+            /** Whether to enable social media sharing in the "Share" popup */
             enableSocialMediaInSharePopup: boolean;
+            /** The current site's id */
             id: number;
+            /** Whether to insert a space after the auto-completed name of a user in the comment box */
             insertSpaceAfterNameTabCompletion: boolean;
-            isNoticesTabEnabled: boolean;
+            /** Whether the current site is the meta site of a main one */
+            isChildMeta?: boolean;
+            /** Whether the current site is a meta site */
+            isMetaSite?: boolean;
+            isNoticesTabEnabled: boolean; // unused?
+            /** The current site's name */
             name: string;
-            negativeVoteScoreFloor: null;
+            /** Used to normalise a post's score. */
+            negativeVoteScoreFloor: number | null;
+            /** The main's site URL, only exists if isChildMeta is true */
+            parentUrl?: string;
+            /** The current site's protocol */
             protocol: "http" | "https";
+            /** Whether to highlight the code using highlight.js in the current site */
             styleCodeWithHighlightjs: boolean;
         }
 
         interface JobPreferences {
+            /** Maximum number of developer roles */
             maxNumDeveloperRoles: number;
+            /** Maximum number of industries */
             maxNumIndustries: number;
         }
 
         interface Story {
+            /** Max length of disliked technologies */
             dislikedTagsMaxLength: number;
+            /** Max length of disliked technologies */
             likedTagsMaxLength: number;
+            /** The minimum body length of various description textareas */
             minCompleteBodyLength: number;
         }
 
         interface Events {
-            postEditionSection: { title: 1; body: 2; tags: 3 };
-            postType: { question: 1 };
+            postEditionSection: {
+                title: 1;
+                body: 2;
+                tags: 3
+            };
+            postType: {
+                question: 1
+            };
         }
 
         const options: {
+            /** Information about the current user */
             user: UserInfo;
+            /** Current user's job preferences */
             jobPreferences: JobPreferences;
+            /** The language code of the locale */
             locale: string;
+            /** The hostname of Meta StackExchange */
             networkMetaHostname: string;
+            /** Websocket-related constants */
             realtime: RealtimeInfo;
+            /** The route name of the current page (e.g. Home/Index) */
             routeName: string;
+            /** The Unix epoch time in seconds */
             serverTime: number;
+            /** Server's time offset in seconds */
             serverTimeOffsetSec: number;
+            /** Event-related constants */
             events: Events;
+            /** Information about the current site */
             site: SiteInfo;
+            /** Constants regarding the user's bio */
             story: Story;
+            /** StackExchange's SVGs hash */
             svgIconHash: string;
+            /** The remote URL StackExchange fetches the SVGs from */
             svgIconPath: string;
         };
 
         const comments: {
-            uiForPost(comments: JQuery): {
-                addShow(value1: boolean, value2: boolean): void;
+            /**
+             * Useful helpers related to a post's comments
+             * @param elOrJQueryOrSelector The comments container HTML element, selector or jQuery object
+             */
+            uiForPost(elOrJQueryOrSelector: string | JQuery | HTMLDivElement): {
+                /**
+                 * Show all hidden comments (if any)
+                 * @param noFocus If true, the input won't be focused
+                 * @param shouldRenderAddForm Whether to show the "Add a comment" textarea
+                 */
+                addShow(
+                    noFocus: boolean,
+                    shouldRenderAddForm: boolean
+                ): void;
+                /**
+                 *
+                 * @param htmlOrJQuery The new comments as an HTML string or a jQuery object
+                 * @param submittedEditCommentId The submitted comment id (if one has been posted)
+                 * @param noHighlighting If true, the unhidden comments won't be highlighted
+                 * @param noScrolling Whether to scroll to the comments container
+                 */
                 showComments(
-                    value1: string,
-                    value2: string | null,
-                    value3: boolean,
-                    value4: boolean
+                    htmlOrJQuery: string | JQuery,
+                    submittedEditCommentId: string | null,
+                    noHighlighting: boolean,
+                    noScrolling: boolean
                 ): void;
             };
         };
@@ -398,31 +638,44 @@ declare global {
         };
 
         interface AccountSettings {
+            /** Whether the current account's password is required for changing Stack id password */
             currentPasswordRequiredForChangingStackIdPassword: boolean;
         }
 
         interface FlagSettings {
+            /** Whether retracting comment flags is allowed */
             allowRetractingCommentFlags: boolean;
+            /** Whether retracting post flags is allowed */
             allowRetractingFlags: boolean;
         }
 
         interface MarkdownSettings {
+            /** Whether table formatting is allowed */
             enableTables: boolean;
         }
 
         interface SiteSettings {
+            /** Whether image uploads are allowed */
             allowImageUploads: boolean;
+            /** Whether imgur HTTPS is enabled  */
             enableImgurHttps: boolean;
+            /** Whether expanded user cards are enabled */
             enableUserHovercards: boolean;
+            /** Whether to force HTTPS on images */
             forceHttpsImages: boolean;
+            /** Whether to highlight the code */
             styleCode: boolean;
         }
 
         /** Site settings */
         const settings: {
+            /** Constants related to the current StackExchange account */
             accounts: AccountSettings;
+            /** Constants related to flags */
             flags: FlagSettings;
+            /** Constants related to the markdown parser */
             markdown: MarkdownSettings;
+            /** Constants related to the current site */
             site: SiteSettings;
         };
     }
