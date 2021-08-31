@@ -178,11 +178,11 @@ export const RoomUsers: RoomUsersInfo;
  * Add the given callback to a list. Callbacks are fired on a new event
  * @param callback The callback to add
  */
-export const addEventHandlerHook: (
+export function addEventHandlerHook(
     callback: (eventInfo: NewEvent, value1: boolean, value2: number) => void
-) => void;
+): void;
 /** Get the list of callbacks */
-export const getEventHandlerHooks: () => Array<
+export function getEventHandlerHooks(): Array<
     (eventInfo: NewEvent, value1: boolean, value2: number) => void
 >;
 /** Information about the current user */
@@ -202,6 +202,6 @@ export const inputHint: {
  * Toggle mobile view
  * @param state The new state
  */
-export const switchMobile: (state: "on" | "off") => void;
+export function switchMobile(state: "on" | "off"): void;
 
 export as namespace CHAT;
