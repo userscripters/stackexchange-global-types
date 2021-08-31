@@ -2,7 +2,6 @@
     "compilerOptions": {
         "strict": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
-        "skipLibCheck": true,
         "noEmit": true,
         "target": "es2019",
         "moduleResolution": "node",
