@@ -17,7 +17,13 @@ CHAT.RoomUsers.get(1);
 CHAT.RoomUsers.forceUpdate(1);
 
 // $ExpectType void
-CHAT.RoomUsers.sidebarActivity(1, "Jeff Atwood", true, Date.now() / 1000, "abcd");
+CHAT.RoomUsers.sidebarActivity(
+    1,
+    "Jeff Atwood",
+    true,
+    Date.now() / 1000,
+    "abcd"
+);
 
 // $ExpectType UserInformation[]
 CHAT.RoomUsers.all();
