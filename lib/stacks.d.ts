@@ -1,20 +1,16 @@
 import "@stackoverflow/stacks/lib/ts/stacks";
+import "@stackoverflow/stacks/lib/ts/stimulus";
 
 declare global {
     namespace Stacks {
-        export type BasicPlacement =
-            | "auto"
-            | "top"
-            | "right"
-            | "bottom"
-            | "left";
+        type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
         // Minimum TypeScript Version: 4.1
-        export type AllPlacements =
+        type AllPlacements =
             | BasicPlacement
             | `${BasicPlacement}-start`
             | `${BasicPlacement}-end`;
 
-        export class ModalController extends StacksController {
+        class ModalController extends StacksController {
             /** Toggles the visibility of the modal */
             toggle(dispatcher?: Event | Element | null): void;
             /** Shows the modal */
@@ -27,21 +23,21 @@ declare global {
          * Helper to manually show an s-modal element via external JS
          * @param element the element the `data-controller="s-modal"` attribute is on
          */
-        export function showModal(element: HTMLElement): void;
+        function showModal(element: HTMLElement): void;
         /**
          * Helper to manually hide an s-modal element via external JS
          * @param element the element the `data-controller="s-modal"` attribute is on
          */
 
-        export function hideModal(element: HTMLElement): void;
+        function hideModal(element: HTMLElement): void;
         /**
          * Helper to manually show an s-modal element via external JS
          * @param element the element the `data-controller="s-modal"` attribute is on
          * @param show whether to force show/hide the modal; toggles the modal if left undefined
          */
-        export function toggleModal(element: HTMLElement, show?: boolean): void;
+        function toggleModal(element: HTMLElement, show?: boolean): void;
 
-        export abstract class BasePopoverController extends StacksController {
+        abstract class BasePopoverController extends StacksController {
             /** Returns true if the if the popover is currently visible */
             isVisible: boolean;
             /** Gets whether the element is visible in the browser's viewport */
@@ -55,9 +51,9 @@ declare global {
             hide(dispatcher?: Event | Element | null): void;
         }
 
-        export class PopoverController extends BasePopoverController {}
+        class PopoverController extends BasePopoverController {}
 
-        export interface PopoverOptions {
+        interface PopoverOptions {
             /** When true, the `click->s-popover#toggle` action will be attached to the controller element or reference element */
             toggleOnClick?: boolean;
             /** When set, `data-s-popover-placement` will be set to this value on the controller element */
@@ -66,7 +62,7 @@ declare global {
             autoShow?: boolean;
         }
 
-        export interface GetPopoverResult {
+        interface GetPopoverResult {
             /** Indicates whether or not the element has s-popover in its `data-controller` class */
             isPopover: boolean;
             /** Returns the element's existing `PopoverController` or null if it has not been configured yet */
@@ -81,12 +77,12 @@ declare global {
          * Helper to manually show an s-popover element via external JS
          * @param element the element the `data-controller="s-popover"` attribute is on
          */
-        export function showPopover(element: HTMLElement): void;
+        function showPopover(element: HTMLElement): void;
         /**
          * Helper to manually hide an s-popover element via external JS
          * @param element the element the `data-controller="s-popover"` attribute is on
          */
-        export function hidePopover(element: Element): void;
+        function hidePopover(element: Element): void;
         /**
          * Attaches a popover to an element and performs additional configuration.
          * @param element the element that will receive the `data-controller="s-popover"` attribute.
@@ -94,7 +90,7 @@ declare global {
          *                If the popover does not have a parent element, it will be inserted as a immediately after the reference element.
          * @param options an optional collection of options to use when configuring the popover.
          */
-        export function attachPopover(
+        function attachPopover(
             element: Element,
             popover: Element | string,
             options?: PopoverOptions
@@ -104,35 +100,33 @@ declare global {
          * @param element the element that has the `data-controller="s-popover"` attribute.
          * @returns The popover that was attached to the element.
          */
-        export function detachPopover(
-            element: Element
-        ): GetPopoverResult["popover"];
+        function detachPopover(element: Element): GetPopoverResult["popover"];
         /**
          * Gets the current state of an element that may be or is intended to be an s-popover controller
          * so it can be configured either directly or via the DOM.
          * @param element An element that may have `data-controller="s-popover"`.
          */
-        export function getPopover(element: Element): GetPopoverResult;
+        function getPopover(element: Element): GetPopoverResult;
         /**
          * Adds or removes the controller from an element's [data-controller] attribute without altering existing entries
          * @param el The element to alter
          * @param controllerName The name of the controller to add/remove
          * @param include Whether to add the controllerName value
          */
-        export function toggleController(
+        function toggleController(
             el: Element,
             controllerName: string,
             include: boolean
         ): void;
 
-        export class TooltipController extends BasePopoverController {
+        class TooltipController extends BasePopoverController {
             /** Sets up a tooltip popover show after a delay */
             scheduleShow(dispatcher?: Event | Element | null): void;
             /** Applies data-s-tooltip-html-title and title attributes */
             applyTitleAttributes(): HTMLElement | null;
         }
 
-        export interface TooltipOptions {
+        interface TooltipOptions {
             /** The position to place the tooltip */
             placement: AllPlacements;
         }
@@ -143,7 +137,7 @@ declare global {
          * @param html An HTML string to populate the tooltip with.
          * @param options Options for rendering the tooltip.
          */
-        export function setTooltipHtml(
+        function setTooltipHtml(
             element: Element,
             html: string,
             options?: TooltipOptions
@@ -154,7 +148,7 @@ declare global {
          * @param text A plain text string to populate the tooltip with.
          * @param options Options for rendering the tooltip.
          */
-        export function setTooltipText(
+        function setTooltipText(
             element: Element,
             text: string,
             options?: TooltipOptions
