@@ -219,7 +219,7 @@ export const options: {
     site: SiteInfo;
     /** Constants regarding the user's bio */
     story: Story;
-    /** StackExchange's SVGs hash */
+    /** A (random) string apparently used for cache-busting */
     svgIconHash: string;
     /** The remote URL StackExchange fetches the SVGs from */
     svgIconPath: string;

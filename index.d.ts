@@ -3,5 +3,6 @@ import "jquery";
 import "./lib/chat";
 import "./lib/stackexchange";
 import "./lib/stacks";
+import "./lib/svg";
 
 export {};
