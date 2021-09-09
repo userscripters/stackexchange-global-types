@@ -69,9 +69,9 @@ declare global {
         /** Where to fetch the SVG's from {@see StackExchange.options.svgIconPath} */
         const rootPath: string | undefined;
 
-        //------------------------------------------------------------------------
-        //- The icon names, run the script above in console and paste the output -
-        //------------------------------------------------------------------------
+        // ------------------------------------------------------------------------
+        // - The icon names, run the script above in console and paste the output -
+        // ------------------------------------------------------------------------
 
         /**
          * Returns the Achievements SVG icon
