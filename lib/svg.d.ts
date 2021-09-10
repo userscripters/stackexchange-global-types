@@ -9,8 +9,8 @@
 // In addition, with the call to .init(), all Svg.<svgName> are assigned to actual Svg getters (based on their name)
 
 // When Svg.<svgName> methods are called, Stack returns a placeholder and queues the request to the server
-// When that request is complete, the element is updated, its outerHTML is saved as a string in cache,
-// and future calls will immediately return the actual jQuery SVG element
+// When that request is complete, the element is updated, its outerHTML is saved as a string to Svg.cache,
+// and future calls will immediately return the actual jQuery SVG element from there
 
 /*
 Script to update the SVG name types:
@@ -55,7 +55,7 @@ declare global {
          */
         function get(name: string): JQuery<SVGElement>;
         /** Returns the Svg._placeholder property and sets it if not already done */
-        function GetImage(): JQuery<SVGElement>;
+        function GetImage(): () => JQuery<SVGElement> | Error;
         /** Returns a placeholder SVG or an error if .init() hasn't been called yet */
         function _placeholder(): Error | JQuery<SVGElement>;
         /** Whether the placeholder styles have been appended to head */
