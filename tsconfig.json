@@ -5,6 +5,7 @@
         "noEmit": true,
         "target": "es2019",
         "moduleResolution": "node",
+        "skipDefaultLibCheck": true,
         "esModuleInterop": true
     },
     "include": ["."],
