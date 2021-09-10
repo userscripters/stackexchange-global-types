@@ -28,7 +28,7 @@ console.log(
  * Returns the ${svgName} SVG icon
  * @link ${getOfficialDocUrl(svgName)}
  *\/
-function ${svgName}(): JQuery<SVGElement>;`)
+const ${svgName}: SvgReturn;`)
         .join('\n')
         .split('\n')
         .map(line => `        ${line}`)
@@ -38,6 +38,16 @@ function ${svgName}(): JQuery<SVGElement>;`)
 
 declare global {
     namespace Svg {
+        interface SvgReturn {
+            (): JQuery<SVGElement>;
+            /**
+             * Add classes to the SVG icon
+             * @param classnames Space-separated class list
+             * @example Instead of `Svg.Bar().addClass("foo")`, you can use `Svg.Bar.With("foo")`
+             */
+            With(classnames: string): JQuery<SVGElement>;
+        }
+
         /**
          * Initialise the Svg class
          * @param rootPath Where to fetch the SVG's from {@see StackExchange.options.svgIconPath}
@@ -55,7 +65,7 @@ declare global {
          */
         function get(name: string): JQuery<SVGElement>;
         /** Returns the Svg._placeholder property and sets it if not already done */
-        function GetImage(): () => JQuery<SVGElement> | Error;
+        function GetImage(): SvgReturn;
         /** Returns a placeholder SVG or an error if .init() hasn't been called yet */
         function _placeholder(): Error | JQuery<SVGElement>;
         /** Whether the placeholder styles have been appended to head */
@@ -77,1097 +87,1097 @@ declare global {
          * Returns the Achievements SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#achievements
          */
-        function Achievements(): JQuery<SVGElement>;
+        const Achievements: SvgReturn;
         /**
          * Returns the AchievementsSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#achievementssm
          */
-        function AchievementsSm(): JQuery<SVGElement>;
+        const AchievementsSm: SvgReturn;
         /**
          * Returns the Alert SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#alert
          */
-        function Alert(): JQuery<SVGElement>;
+        const Alert: SvgReturn;
         /**
          * Returns the AlertCircle SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#alertcircle
          */
-        function AlertCircle(): JQuery<SVGElement>;
+        const AlertCircle: SvgReturn;
         /**
          * Returns the AlertCircleSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#alertcirclesm
          */
-        function AlertCircleSm(): JQuery<SVGElement>;
+        const AlertCircleSm: SvgReturn;
         /**
          * Returns the AlertSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#alertsm
          */
-        function AlertSm(): JQuery<SVGElement>;
+        const AlertSm: SvgReturn;
         /**
          * Returns the Answer SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#answer
          */
-        function Answer(): JQuery<SVGElement>;
+        const Answer: SvgReturn;
         /**
          * Returns the Approve SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#approve
          */
-        function Approve(): JQuery<SVGElement>;
+        const Approve: SvgReturn;
         /**
          * Returns the ArrowDoubleDown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowdoubledown
          */
-        function ArrowDoubleDown(): JQuery<SVGElement>;
+        const ArrowDoubleDown: SvgReturn;
         /**
          * Returns the ArrowDoubleUp SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowdoubleup
          */
-        function ArrowDoubleUp(): JQuery<SVGElement>;
+        const ArrowDoubleUp: SvgReturn;
         /**
          * Returns the ArrowDown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowdown
          */
-        function ArrowDown(): JQuery<SVGElement>;
+        const ArrowDown: SvgReturn;
         /**
          * Returns the ArrowDownAlt SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowdownalt
          */
-        function ArrowDownAlt(): JQuery<SVGElement>;
+        const ArrowDownAlt: SvgReturn;
         /**
          * Returns the ArrowDownLg SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowdownlg
          */
-        function ArrowDownLg(): JQuery<SVGElement>;
+        const ArrowDownLg: SvgReturn;
         /**
          * Returns the ArrowDownSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowdownsm
          */
-        function ArrowDownSm(): JQuery<SVGElement>;
+        const ArrowDownSm: SvgReturn;
         /**
          * Returns the ArrowLeft SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowleft
          */
-        function ArrowLeft(): JQuery<SVGElement>;
+        const ArrowLeft: SvgReturn;
         /**
          * Returns the ArrowLeftAlt SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowleftalt
          */
-        function ArrowLeftAlt(): JQuery<SVGElement>;
+        const ArrowLeftAlt: SvgReturn;
         /**
          * Returns the ArrowLeftSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowleftsm
          */
-        function ArrowLeftSm(): JQuery<SVGElement>;
+        const ArrowLeftSm: SvgReturn;
         /**
          * Returns the ArrowRight SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowright
          */
-        function ArrowRight(): JQuery<SVGElement>;
+        const ArrowRight: SvgReturn;
         /**
          * Returns the ArrowRightAlt SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowrightalt
          */
-        function ArrowRightAlt(): JQuery<SVGElement>;
+        const ArrowRightAlt: SvgReturn;
         /**
          * Returns the ArrowRightAltSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowrightaltsm
          */
-        function ArrowRightAltSm(): JQuery<SVGElement>;
+        const ArrowRightAltSm: SvgReturn;
         /**
          * Returns the ArrowRightSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowrightsm
          */
-        function ArrowRightSm(): JQuery<SVGElement>;
+        const ArrowRightSm: SvgReturn;
         /**
          * Returns the ArrowUp SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowup
          */
-        function ArrowUp(): JQuery<SVGElement>;
+        const ArrowUp: SvgReturn;
         /**
          * Returns the ArrowUpAlt SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowupalt
          */
-        function ArrowUpAlt(): JQuery<SVGElement>;
+        const ArrowUpAlt: SvgReturn;
         /**
          * Returns the ArrowUpDown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowupdown
          */
-        function ArrowUpDown(): JQuery<SVGElement>;
+        const ArrowUpDown: SvgReturn;
         /**
          * Returns the ArrowUpDownSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowupdownsm
          */
-        function ArrowUpDownSm(): JQuery<SVGElement>;
+        const ArrowUpDownSm: SvgReturn;
         /**
          * Returns the ArrowUpLg SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowuplg
          */
-        function ArrowUpLg(): JQuery<SVGElement>;
+        const ArrowUpLg: SvgReturn;
         /**
          * Returns the ArrowUpSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#arrowupsm
          */
-        function ArrowUpSm(): JQuery<SVGElement>;
+        const ArrowUpSm: SvgReturn;
         /**
          * Returns the Badge SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#badge
          */
-        function Badge(): JQuery<SVGElement>;
+        const Badge: SvgReturn;
         /**
          * Returns the Balloon SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#balloon
          */
-        function Balloon(): JQuery<SVGElement>;
+        const Balloon: SvgReturn;
         /**
          * Returns the Bell SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#bell
          */
-        function Bell(): JQuery<SVGElement>;
+        const Bell: SvgReturn;
         /**
          * Returns the Bold SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#bold
          */
-        function Bold(): JQuery<SVGElement>;
+        const Bold: SvgReturn;
         /**
          * Returns the Book SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#book
          */
-        function Book(): JQuery<SVGElement>;
+        const Book: SvgReturn;
         /**
          * Returns the Briefcase SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#briefcase
          */
-        function Briefcase(): JQuery<SVGElement>;
+        const Briefcase: SvgReturn;
         /**
          * Returns the BriefcaseSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#briefcasesm
          */
-        function BriefcaseSm(): JQuery<SVGElement>;
+        const BriefcaseSm: SvgReturn;
         /**
          * Returns the Bullhorn SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#bullhorn
          */
-        function Bullhorn(): JQuery<SVGElement>;
+        const Bullhorn: SvgReturn;
         /**
          * Returns the BullhornSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#bullhornsm
          */
-        function BullhornSm(): JQuery<SVGElement>;
+        const BullhornSm: SvgReturn;
         /**
          * Returns the Calendar SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#calendar
          */
-        function Calendar(): JQuery<SVGElement>;
+        const Calendar: SvgReturn;
         /**
          * Returns the Chair SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#chair
          */
-        function Chair(): JQuery<SVGElement>;
+        const Chair: SvgReturn;
         /**
          * Returns the Checkmark SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#checkmark
          */
-        function Checkmark(): JQuery<SVGElement>;
+        const Checkmark: SvgReturn;
         /**
          * Returns the CheckmarkLg SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#checkmarklg
          */
-        function CheckmarkLg(): JQuery<SVGElement>;
+        const CheckmarkLg: SvgReturn;
         /**
          * Returns the CheckmarkSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#checkmarksm
          */
-        function CheckmarkSm(): JQuery<SVGElement>;
+        const CheckmarkSm: SvgReturn;
         /**
          * Returns the Clap SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#clap
          */
-        function Clap(): JQuery<SVGElement>;
+        const Clap: SvgReturn;
         /**
          * Returns the Clear SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#clear
          */
-        function Clear(): JQuery<SVGElement>;
+        const Clear: SvgReturn;
         /**
          * Returns the ClearSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#clearsm
          */
-        function ClearSm(): JQuery<SVGElement>;
+        const ClearSm: SvgReturn;
         /**
          * Returns the Clock SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#clock
          */
-        function Clock(): JQuery<SVGElement>;
+        const Clock: SvgReturn;
         /**
          * Returns the Code SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#code
          */
-        function Code(): JQuery<SVGElement>;
+        const Code: SvgReturn;
         /**
          * Returns the Coins SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#coins
          */
-        function Coins(): JQuery<SVGElement>;
+        const Coins: SvgReturn;
         /**
          * Returns the Columns SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#columns
          */
-        function Columns(): JQuery<SVGElement>;
+        const Columns: SvgReturn;
         /**
          * Returns the Computer SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#computer
          */
-        function Computer(): JQuery<SVGElement>;
+        const Computer: SvgReturn;
         /**
          * Returns the Copy SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#copy
          */
-        function Copy(): JQuery<SVGElement>;
+        const Copy: SvgReturn;
         /**
          * Returns the CreditCard SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#creditcard
          */
-        function CreditCard(): JQuery<SVGElement>;
+        const CreditCard: SvgReturn;
         /**
          * Returns the Crosshairs SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#crosshairs
          */
-        function Crosshairs(): JQuery<SVGElement>;
+        const Crosshairs: SvgReturn;
         /**
          * Returns the Currency SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#currency
          */
-        function Currency(): JQuery<SVGElement>;
+        const Currency: SvgReturn;
         /**
          * Returns the DevTo SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#devto
          */
-        function DevTo(): JQuery<SVGElement>;
+        const DevTo: SvgReturn;
         /**
          * Returns the Document SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#document
          */
-        function Document(): JQuery<SVGElement>;
+        const Document: SvgReturn;
         /**
          * Returns the Download SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#download
          */
-        function Download(): JQuery<SVGElement>;
+        const Download: SvgReturn;
         /**
          * Returns the DownloadSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#downloadsm
          */
-        function DownloadSm(): JQuery<SVGElement>;
+        const DownloadSm: SvgReturn;
         /**
          * Returns the Dropbox SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#dropbox
          */
-        function Dropbox(): JQuery<SVGElement>;
+        const Dropbox: SvgReturn;
         /**
          * Returns the EllipsisHorizontal SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#ellipsishorizontal
          */
-        function EllipsisHorizontal(): JQuery<SVGElement>;
+        const EllipsisHorizontal: SvgReturn;
         /**
          * Returns the EllipsisVertical SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#ellipsisvertical
          */
-        function EllipsisVertical(): JQuery<SVGElement>;
+        const EllipsisVertical: SvgReturn;
         /**
          * Returns the Eye SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#eye
          */
-        function Eye(): JQuery<SVGElement>;
+        const Eye: SvgReturn;
         /**
          * Returns the EyeOff SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#eyeoff
          */
-        function EyeOff(): JQuery<SVGElement>;
+        const EyeOff: SvgReturn;
         /**
          * Returns the Eyes SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#eyes
          */
-        function Eyes(): JQuery<SVGElement>;
+        const Eyes: SvgReturn;
         /**
          * Returns the Facebook SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#facebook
          */
-        function Facebook(): JQuery<SVGElement>;
+        const Facebook: SvgReturn;
         /**
          * Returns the FaceFrown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#facefrown
          */
-        function FaceFrown(): JQuery<SVGElement>;
+        const FaceFrown: SvgReturn;
         /**
          * Returns the FaceJoy SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#facejoy
          */
-        function FaceJoy(): JQuery<SVGElement>;
+        const FaceJoy: SvgReturn;
         /**
          * Returns the FaceMindBlown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#facemindblown
          */
-        function FaceMindBlown(): JQuery<SVGElement>;
+        const FaceMindBlown: SvgReturn;
         /**
          * Returns the FaceNeutral SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#faceneutral
          */
-        function FaceNeutral(): JQuery<SVGElement>;
+        const FaceNeutral: SvgReturn;
         /**
          * Returns the FaceSad SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#facesad
          */
-        function FaceSad(): JQuery<SVGElement>;
+        const FaceSad: SvgReturn;
         /**
          * Returns the FaceShocked SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#faceshocked
          */
-        function FaceShocked(): JQuery<SVGElement>;
+        const FaceShocked: SvgReturn;
         /**
          * Returns the FaceSmile SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#facesmile
          */
-        function FaceSmile(): JQuery<SVGElement>;
+        const FaceSmile: SvgReturn;
         /**
          * Returns the Female SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#female
          */
-        function Female(): JQuery<SVGElement>;
+        const Female: SvgReturn;
         /**
          * Returns the Fire SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#fire
          */
-        function Fire(): JQuery<SVGElement>;
+        const Fire: SvgReturn;
         /**
          * Returns the FireSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#firesm
          */
-        function FireSm(): JQuery<SVGElement>;
+        const FireSm: SvgReturn;
         /**
          * Returns the Fitness SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#fitness
          */
-        function Fitness(): JQuery<SVGElement>;
+        const Fitness: SvgReturn;
         /**
          * Returns the Flag SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#flag
          */
-        function Flag(): JQuery<SVGElement>;
+        const Flag: SvgReturn;
         /**
          * Returns the FlagSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#flagsm
          */
-        function FlagSm(): JQuery<SVGElement>;
+        const FlagSm: SvgReturn;
         /**
          * Returns the Float SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#float
          */
-        function Float(): JQuery<SVGElement>;
+        const Float: SvgReturn;
         /**
          * Returns the Food SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#food
          */
-        function Food(): JQuery<SVGElement>;
+        const Food: SvgReturn;
         /**
          * Returns the Gear SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#gear
          */
-        function Gear(): JQuery<SVGElement>;
+        const Gear: SvgReturn;
         /**
          * Returns the GearSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#gearsm
          */
-        function GearSm(): JQuery<SVGElement>;
+        const GearSm: SvgReturn;
         /**
          * Returns the GitHub SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#github
          */
-        function GitHub(): JQuery<SVGElement>;
+        const GitHub: SvgReturn;
         /**
          * Returns the Gitlab SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#gitlab
          */
-        function Gitlab(): JQuery<SVGElement>;
+        const Gitlab: SvgReturn;
         /**
          * Returns the Globe SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#globe
          */
-        function Globe(): JQuery<SVGElement>;
+        const Globe: SvgReturn;
         /**
          * Returns the Google SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#google
          */
-        function Google(): JQuery<SVGElement>;
+        const Google: SvgReturn;
         /**
          * Returns the GoogleDrive SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#googledrive
          */
-        function GoogleDrive(): JQuery<SVGElement>;
+        const GoogleDrive: SvgReturn;
         /**
          * Returns the Grabber SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#grabber
          */
-        function Grabber(): JQuery<SVGElement>;
+        const Grabber: SvgReturn;
         /**
          * Returns the Graph SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#graph
          */
-        function Graph(): JQuery<SVGElement>;
+        const Graph: SvgReturn;
         /**
          * Returns the Grid SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#grid
          */
-        function Grid(): JQuery<SVGElement>;
+        const Grid: SvgReturn;
         /**
          * Returns the Hamburger SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#hamburger
          */
-        function Hamburger(): JQuery<SVGElement>;
+        const Hamburger: SvgReturn;
         /**
          * Returns the HandNice SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#handnice
          */
-        function HandNice(): JQuery<SVGElement>;
+        const HandNice: SvgReturn;
         /**
          * Returns the HandPointRight SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#handpointright
          */
-        function HandPointRight(): JQuery<SVGElement>;
+        const HandPointRight: SvgReturn;
         /**
          * Returns the HandRock SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#handrock
          */
-        function HandRock(): JQuery<SVGElement>;
+        const HandRock: SvgReturn;
         /**
          * Returns the HandsTogether SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#handstogether
          */
-        function HandsTogether(): JQuery<SVGElement>;
+        const HandsTogether: SvgReturn;
         /**
          * Returns the Header SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#header
          */
-        function Header(): JQuery<SVGElement>;
+        const Header: SvgReturn;
         /**
          * Returns the Health SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#health
          */
-        function Health(): JQuery<SVGElement>;
+        const Health: SvgReturn;
         /**
          * Returns the Heart SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#heart
          */
-        function Heart(): JQuery<SVGElement>;
+        const Heart: SvgReturn;
         /**
          * Returns the Help SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#help
          */
-        function Help(): JQuery<SVGElement>;
+        const Help: SvgReturn;
         /**
          * Returns the HelpSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#helpsm
          */
-        function HelpSm(): JQuery<SVGElement>;
+        const HelpSm: SvgReturn;
         /**
          * Returns the History SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#history
          */
-        function History(): JQuery<SVGElement>;
+        const History: SvgReturn;
         /**
          * Returns the Home SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#home
          */
-        function Home(): JQuery<SVGElement>;
+        const Home: SvgReturn;
         /**
          * Returns the HorizontalRule SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#horizontalrule
          */
-        function HorizontalRule(): JQuery<SVGElement>;
+        const HorizontalRule: SvgReturn;
         /**
          * Returns the Hundred SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#hundred
          */
-        function Hundred(): JQuery<SVGElement>;
+        const Hundred: SvgReturn;
         /**
          * Returns the Image SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#image
          */
-        function Image(): JQuery<SVGElement>;
+        const Image: SvgReturn;
         /**
          * Returns the Inbox SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#inbox
          */
-        function Inbox(): JQuery<SVGElement>;
+        const Inbox: SvgReturn;
         /**
          * Returns the Indent SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#indent
          */
-        function Indent(): JQuery<SVGElement>;
+        const Indent: SvgReturn;
         /**
          * Returns the Industry SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#industry
          */
-        function Industry(): JQuery<SVGElement>;
+        const Industry: SvgReturn;
         /**
          * Returns the Info SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#info
          */
-        function Info(): JQuery<SVGElement>;
+        const Info: SvgReturn;
         /**
          * Returns the InfoSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#infosm
          */
-        function InfoSm(): JQuery<SVGElement>;
+        const InfoSm: SvgReturn;
         /**
          * Returns the International SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#international
          */
-        function International(): JQuery<SVGElement>;
+        const International: SvgReturn;
         /**
          * Returns the Italic SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#italic
          */
-        function Italic(): JQuery<SVGElement>;
+        const Italic: SvgReturn;
         /**
          * Returns the Jira SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#jira
          */
-        function Jira(): JQuery<SVGElement>;
+        const Jira: SvgReturn;
         /**
          * Returns the Key SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#key
          */
-        function Key(): JQuery<SVGElement>;
+        const Key: SvgReturn;
         /**
          * Returns the Laptop SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#laptop
          */
-        function Laptop(): JQuery<SVGElement>;
+        const Laptop: SvgReturn;
         /**
          * Returns the LaunchPad SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#launchpad
          */
-        function LaunchPad(): JQuery<SVGElement>;
+        const LaunchPad: SvgReturn;
         /**
          * Returns the Lightbulb SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#lightbulb
          */
-        function Lightbulb(): JQuery<SVGElement>;
+        const Lightbulb: SvgReturn;
         /**
          * Returns the Link SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#link
          */
-        function Link(): JQuery<SVGElement>;
+        const Link: SvgReturn;
         /**
          * Returns the LinkedIn SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#linkedin
          */
-        function LinkedIn(): JQuery<SVGElement>;
+        const LinkedIn: SvgReturn;
         /**
          * Returns the Location SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#location
          */
-        function Location(): JQuery<SVGElement>;
+        const Location: SvgReturn;
         /**
          * Returns the Lock SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#lock
          */
-        function Lock(): JQuery<SVGElement>;
+        const Lock: SvgReturn;
         /**
          * Returns the LockSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#locksm
          */
-        function LockSm(): JQuery<SVGElement>;
+        const LockSm: SvgReturn;
         /**
          * Returns the Logo SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logo
          */
-        function Logo(): JQuery<SVGElement>;
+        const Logo: SvgReturn;
         /**
          * Returns the LogoEnterprise SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoenterprise
          */
-        function LogoEnterprise(): JQuery<SVGElement>;
+        const LogoEnterprise: SvgReturn;
         /**
          * Returns the LogoEnterpriseWordmarkSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoenterprisewordmarksm
          */
-        function LogoEnterpriseWordmarkSm(): JQuery<SVGElement>;
+        const LogoEnterpriseWordmarkSm: SvgReturn;
         /**
          * Returns the LogoGlyph SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoglyph
          */
-        function LogoGlyph(): JQuery<SVGElement>;
+        const LogoGlyph: SvgReturn;
         /**
          * Returns the LogoGlyphMd SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoglyphmd
          */
-        function LogoGlyphMd(): JQuery<SVGElement>;
+        const LogoGlyphMd: SvgReturn;
         /**
          * Returns the LogoGlyphSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoglyphsm
          */
-        function LogoGlyphSm(): JQuery<SVGElement>;
+        const LogoGlyphSm: SvgReturn;
         /**
          * Returns the LogoGlyphXSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoglyphxsm
          */
-        function LogoGlyphXSm(): JQuery<SVGElement>;
+        const LogoGlyphXSm: SvgReturn;
         /**
          * Returns the LogoGlyphXxs SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoglyphxxs
          */
-        function LogoGlyphXxs(): JQuery<SVGElement>;
+        const LogoGlyphXxs: SvgReturn;
         /**
          * Returns the LogoJobs SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logojobs
          */
-        function LogoJobs(): JQuery<SVGElement>;
+        const LogoJobs: SvgReturn;
         /**
          * Returns the LogoMd SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logomd
          */
-        function LogoMd(): JQuery<SVGElement>;
+        const LogoMd: SvgReturn;
         /**
          * Returns the LogoSE SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logose
          */
-        function LogoSE(): JQuery<SVGElement>;
+        const LogoSE: SvgReturn;
         /**
          * Returns the LogoSEAlternativeSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logosealternativesm
          */
-        function LogoSEAlternativeSm(): JQuery<SVGElement>;
+        const LogoSEAlternativeSm: SvgReturn;
         /**
          * Returns the LogoSEGlyphMd SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoseglyphmd
          */
-        function LogoSEGlyphMd(): JQuery<SVGElement>;
+        const LogoSEGlyphMd: SvgReturn;
         /**
          * Returns the LogoSEXxs SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logosexxs
          */
-        function LogoSEXxs(): JQuery<SVGElement>;
+        const LogoSEXxs: SvgReturn;
         /**
          * Returns the LogoSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logosm
          */
-        function LogoSm(): JQuery<SVGElement>;
+        const LogoSm: SvgReturn;
         /**
          * Returns the LogoTalent SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logotalent
          */
-        function LogoTalent(): JQuery<SVGElement>;
+        const LogoTalent: SvgReturn;
         /**
          * Returns the LogoTeams SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoteams
          */
-        function LogoTeams(): JQuery<SVGElement>;
+        const LogoTeams: SvgReturn;
         /**
          * Returns the LogoTeamsAlt SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoteamsalt
          */
-        function LogoTeamsAlt(): JQuery<SVGElement>;
+        const LogoTeamsAlt: SvgReturn;
         /**
          * Returns the LogoTeamsAltMd SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoteamsaltmd
          */
-        function LogoTeamsAltMd(): JQuery<SVGElement>;
+        const LogoTeamsAltMd: SvgReturn;
         /**
          * Returns the LogoWordmark SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logowordmark
          */
-        function LogoWordmark(): JQuery<SVGElement>;
+        const LogoWordmark: SvgReturn;
         /**
          * Returns the LogoWordmarkMd SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logowordmarkmd
          */
-        function LogoWordmarkMd(): JQuery<SVGElement>;
+        const LogoWordmarkMd: SvgReturn;
         /**
          * Returns the LogoWordmarkSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logowordmarksm
          */
-        function LogoWordmarkSm(): JQuery<SVGElement>;
+        const LogoWordmarkSm: SvgReturn;
         /**
          * Returns the Mail SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#mail
          */
-        function Mail(): JQuery<SVGElement>;
+        const Mail: SvgReturn;
         /**
          * Returns the Medal SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#medal
          */
-        function Medal(): JQuery<SVGElement>;
+        const Medal: SvgReturn;
         /**
          * Returns the Merge SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#merge
          */
-        function Merge(): JQuery<SVGElement>;
+        const Merge: SvgReturn;
         /**
          * Returns the Message SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#message
          */
-        function Message(): JQuery<SVGElement>;
+        const Message: SvgReturn;
         /**
          * Returns the Microsoft SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#microsoft
          */
-        function Microsoft(): JQuery<SVGElement>;
+        const Microsoft: SvgReturn;
         /**
          * Returns the Migrate SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#migrate
          */
-        function Migrate(): JQuery<SVGElement>;
+        const Migrate: SvgReturn;
         /**
          * Returns the Milestone SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#milestone
          */
-        function Milestone(): JQuery<SVGElement>;
+        const Milestone: SvgReturn;
         /**
          * Returns the Minus SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#minus
          */
-        function Minus(): JQuery<SVGElement>;
+        const Minus: SvgReturn;
         /**
          * Returns the MinusSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#minussm
          */
-        function MinusSm(): JQuery<SVGElement>;
+        const MinusSm: SvgReturn;
         /**
          * Returns the Moderator SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#moderator
          */
-        function Moderator(): JQuery<SVGElement>;
+        const Moderator: SvgReturn;
         /**
          * Returns the ModeratorSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#moderatorsm
          */
-        function ModeratorSm(): JQuery<SVGElement>;
+        const ModeratorSm: SvgReturn;
         /**
          * Returns the Money SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#money
          */
-        function Money(): JQuery<SVGElement>;
+        const Money: SvgReturn;
         /**
          * Returns the NotInterested SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#notinterested
          */
-        function NotInterested(): JQuery<SVGElement>;
+        const NotInterested: SvgReturn;
         /**
          * Returns the OpenSource SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#opensource
          */
-        function OpenSource(): JQuery<SVGElement>;
+        const OpenSource: SvgReturn;
         /**
          * Returns the OrderedList SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#orderedlist
          */
-        function OrderedList(): JQuery<SVGElement>;
+        const OrderedList: SvgReturn;
         /**
          * Returns the Outdent SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#outdent
          */
-        function Outdent(): JQuery<SVGElement>;
+        const Outdent: SvgReturn;
         /**
          * Returns the Paperclip SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#paperclip
          */
-        function Paperclip(): JQuery<SVGElement>;
+        const Paperclip: SvgReturn;
         /**
          * Returns the Peak SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#peak
          */
-        function Peak(): JQuery<SVGElement>;
+        const Peak: SvgReturn;
         /**
          * Returns the Pencil SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#pencil
          */
-        function Pencil(): JQuery<SVGElement>;
+        const Pencil: SvgReturn;
         /**
          * Returns the PencilSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#pencilsm
          */
-        function PencilSm(): JQuery<SVGElement>;
+        const PencilSm: SvgReturn;
         /**
          * Returns the People SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#people
          */
-        function People(): JQuery<SVGElement>;
+        const People: SvgReturn;
         /**
          * Returns the Person SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#person
          */
-        function Person(): JQuery<SVGElement>;
+        const Person: SvgReturn;
         /**
          * Returns the Phone SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#phone
          */
-        function Phone(): JQuery<SVGElement>;
+        const Phone: SvgReturn;
         /**
          * Returns the Play SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#play
          */
-        function Play(): JQuery<SVGElement>;
+        const Play: SvgReturn;
         /**
          * Returns the Plus SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#plus
          */
-        function Plus(): JQuery<SVGElement>;
+        const Plus: SvgReturn;
         /**
          * Returns the PlusOne SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#plusone
          */
-        function PlusOne(): JQuery<SVGElement>;
+        const PlusOne: SvgReturn;
         /**
          * Returns the PlusSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#plussm
          */
-        function PlusSm(): JQuery<SVGElement>;
+        const PlusSm: SvgReturn;
         /**
          * Returns the PromoteDemote SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#promotedemote
          */
-        function PromoteDemote(): JQuery<SVGElement>;
+        const PromoteDemote: SvgReturn;
         /**
          * Returns the Question SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#question
          */
-        function Question(): JQuery<SVGElement>;
+        const Question: SvgReturn;
         /**
          * Returns the Quote SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#quote
          */
-        function Quote(): JQuery<SVGElement>;
+        const Quote: SvgReturn;
         /**
          * Returns the Refresh SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#refresh
          */
-        function Refresh(): JQuery<SVGElement>;
+        const Refresh: SvgReturn;
         /**
          * Returns the RefreshSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#refreshsm
          */
-        function RefreshSm(): JQuery<SVGElement>;
+        const RefreshSm: SvgReturn;
         /**
          * Returns the Relocation SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#relocation
          */
-        function Relocation(): JQuery<SVGElement>;
+        const Relocation: SvgReturn;
         /**
          * Returns the Remote SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#remote
          */
-        function Remote(): JQuery<SVGElement>;
+        const Remote: SvgReturn;
         /**
          * Returns the ReviewQueue SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#reviewqueue
          */
-        function ReviewQueue(): JQuery<SVGElement>;
+        const ReviewQueue: SvgReturn;
         /**
          * Returns the Rss SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#rss
          */
-        function Rss(): JQuery<SVGElement>;
+        const Rss: SvgReturn;
         /**
          * Returns the School SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#school
          */
-        function School(): JQuery<SVGElement>;
+        const School: SvgReturn;
         /**
          * Returns the SchoolSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#schoolsm
          */
-        function SchoolSm(): JQuery<SVGElement>;
+        const SchoolSm: SvgReturn;
         /**
          * Returns the Search SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#search
          */
-        function Search(): JQuery<SVGElement>;
+        const Search: SvgReturn;
         /**
          * Returns the SearchSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#searchsm
          */
-        function SearchSm(): JQuery<SVGElement>;
+        const SearchSm: SvgReturn;
         /**
          * Returns the Share SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#share
          */
-        function Share(): JQuery<SVGElement>;
+        const Share: SvgReturn;
         /**
          * Returns the ShareSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#sharesm
          */
-        function ShareSm(): JQuery<SVGElement>;
+        const ShareSm: SvgReturn;
         /**
          * Returns the Shield SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#shield
          */
-        function Shield(): JQuery<SVGElement>;
+        const Shield: SvgReturn;
         /**
          * Returns the ShieldSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#shieldsm
          */
-        function ShieldSm(): JQuery<SVGElement>;
+        const ShieldSm: SvgReturn;
         /**
          * Returns the ShieldXSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#shieldxsm
          */
-        function ShieldXSm(): JQuery<SVGElement>;
+        const ShieldXSm: SvgReturn;
         /**
          * Returns the Skull SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#skull
          */
-        function Skull(): JQuery<SVGElement>;
+        const Skull: SvgReturn;
         /**
          * Returns the Slack SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#slack
          */
-        function Slack(): JQuery<SVGElement>;
+        const Slack: SvgReturn;
         /**
          * Returns the SmartPhone SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#smartphone
          */
-        function SmartPhone(): JQuery<SVGElement>;
+        const SmartPhone: SvgReturn;
         /**
          * Returns the SOS SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#sos
          */
-        function SOS(): JQuery<SVGElement>;
+        const SOS: SvgReturn;
         /**
          * Returns the SpeechBubble SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#speechbubble
          */
-        function SpeechBubble(): JQuery<SVGElement>;
+        const SpeechBubble: SvgReturn;
         /**
          * Returns the SpeechBubbleError SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#speechbubbleerror
          */
-        function SpeechBubbleError(): JQuery<SVGElement>;
+        const SpeechBubbleError: SvgReturn;
         /**
          * Returns the SpeechBubbleSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#speechbubblesm
          */
-        function SpeechBubbleSm(): JQuery<SVGElement>;
+        const SpeechBubbleSm: SvgReturn;
         /**
          * Returns the StackExchange SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#stackexchange
          */
-        function StackExchange(): JQuery<SVGElement>;
+        const StackExchange: SvgReturn;
         /**
          * Returns the Star SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#star
          */
-        function Star(): JQuery<SVGElement>;
+        const Star: SvgReturn;
         /**
          * Returns the Stroller SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#stroller
          */
-        function Stroller(): JQuery<SVGElement>;
+        const Stroller: SvgReturn;
         /**
          * Returns the Subway SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#subway
          */
-        function Subway(): JQuery<SVGElement>;
+        const Subway: SvgReturn;
         /**
          * Returns the Sync SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#sync
          */
-        function Sync(): JQuery<SVGElement>;
+        const Sync: SvgReturn;
         /**
          * Returns the Tack SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#tack
          */
-        function Tack(): JQuery<SVGElement>;
+        const Tack: SvgReturn;
         /**
          * Returns the Tada SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#tada
          */
-        function Tada(): JQuery<SVGElement>;
+        const Tada: SvgReturn;
         /**
          * Returns the ThumbsDown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#thumbsdown
          */
-        function ThumbsDown(): JQuery<SVGElement>;
+        const ThumbsDown: SvgReturn;
         /**
          * Returns the ThumbsUp SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#thumbsup
          */
-        function ThumbsUp(): JQuery<SVGElement>;
+        const ThumbsUp: SvgReturn;
         /**
          * Returns the TIL SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#til
          */
-        function TIL(): JQuery<SVGElement>;
+        const TIL: SvgReturn;
         /**
          * Returns the Tool SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#tool
          */
-        function Tool(): JQuery<SVGElement>;
+        const Tool: SvgReturn;
         /**
          * Returns the Trash SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#trash
          */
-        function Trash(): JQuery<SVGElement>;
+        const Trash: SvgReturn;
         /**
          * Returns the TrashSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#trashsm
          */
-        function TrashSm(): JQuery<SVGElement>;
+        const TrashSm: SvgReturn;
         /**
          * Returns the TrendingDown SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#trendingdown
          */
-        function TrendingDown(): JQuery<SVGElement>;
+        const TrendingDown: SvgReturn;
         /**
          * Returns the TrendingNone SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#trendingnone
          */
-        function TrendingNone(): JQuery<SVGElement>;
+        const TrendingNone: SvgReturn;
         /**
          * Returns the TrendingUp SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#trendingup
          */
-        function TrendingUp(): JQuery<SVGElement>;
+        const TrendingUp: SvgReturn;
         /**
          * Returns the Twitter SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#twitter
          */
-        function Twitter(): JQuery<SVGElement>;
+        const Twitter: SvgReturn;
         /**
          * Returns the Undo SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#undo
          */
-        function Undo(): JQuery<SVGElement>;
+        const Undo: SvgReturn;
         /**
          * Returns the UndoSm SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#undosm
          */
-        function UndoSm(): JQuery<SVGElement>;
+        const UndoSm: SvgReturn;
         /**
          * Returns the UnorderedList SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#unorderedlist
          */
-        function UnorderedList(): JQuery<SVGElement>;
+        const UnorderedList: SvgReturn;
         /**
          * Returns the Vacation SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#vacation
          */
-        function Vacation(): JQuery<SVGElement>;
+        const Vacation: SvgReturn;
         /**
          * Returns the VK SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#vk
          */
-        function VK(): JQuery<SVGElement>;
+        const VK: SvgReturn;
         /**
          * Returns the Wave SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#wave
          */
-        function Wave(): JQuery<SVGElement>;
+        const Wave: SvgReturn;
         /**
          * Returns the Yandex SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#yandex
          */
-        function Yandex(): JQuery<SVGElement>;
+        const Yandex: SvgReturn;
     }
 }
 

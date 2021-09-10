@@ -7,7 +7,7 @@ Svg.get("Achievements");
 // $ExpectType string
 Svg.cache.Achievements;
 
-// $ExpectType JQuery<SVGElement> | Error
+// $ExpectType JQuery<SVGElement>
 Svg.GetImage()();
 
 // $ExpectType JQuery<SVGElement> | Error
@@ -15,3 +15,6 @@ Svg._placeholder();
 
 // $ExpectType JQuery<SVGElement>
 Svg.Achievements();
+
+// $ExpectType JQuery<SVGElement>
+Svg.Achievements.With("native");
