@@ -3,7 +3,7 @@
 
 | Author       | Oleg Valter<br>[oleg.a.valter@gmail.com](mailto:oleg.a.valter@gmail.com) |
 | :----------- | :----------------------- |
-| Contributors | Double Beep<br>[https://github.com/double-beep](https://github.com/double-beep)              |
+| Contributors | double-beep<br>[https://github.com/double-beep](https://github.com/double-beep)              |
 | Name         | @userscripters/stackexchange-global-types    |
 | Description  | Type definitions for global Stack Exchange objects           |
 | License      | [GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later)                 |
