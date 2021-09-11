@@ -1,5 +1,8 @@
 // StackExchange's Svg helper, official documentation here: https://stackoverflow.design/product/resources/icons/
 // source code here: https://dev.stackoverflow.com/content/Js/full.en.js
+// Number of properties: 228
+// Find the number of properties running Object.keys(Svg).length in the console.
+// Then find the ones added/removed and edit the count and the types below accordingly
 
 // The way the object/class works is rather confusing:
 // At first, Svg.<svgName> are assigned to GetImage()
