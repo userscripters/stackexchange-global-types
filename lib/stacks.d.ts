@@ -9,6 +9,8 @@ type AllPlacements =
 
 declare global {
     namespace Stacks {
+        /* Stacks classes */
+
         class StacksController extends Stimulus.Controller {
             /**
              * Gets the value of a data attribute in a given element
@@ -47,24 +49,6 @@ declare global {
             hide(dispatcher?: Event | Element | null): void;
         }
 
-        /**
-         * Helper to manually show an s-modal element via external JS
-         * @param element the element the `data-controller="s-modal"` attribute is on
-         */
-        function showModal(element: HTMLElement): void;
-        /**
-         * Helper to manually hide an s-modal element via external JS
-         * @param element the element the `data-controller="s-modal"` attribute is on
-         */
-
-        function hideModal(element: HTMLElement): void;
-        /**
-         * Helper to manually show an s-modal element via external JS
-         * @param element the element the `data-controller="s-modal"` attribute is on
-         * @param show whether to force show/hide the modal; toggles the modal if left undefined
-         */
-        function toggleModal(element: HTMLElement, show?: boolean): void;
-
         abstract class BasePopoverController extends StacksController {
             /** Returns true if the if the popover is currently visible */
             isVisible: boolean;
@@ -80,6 +64,17 @@ declare global {
         }
 
         class PopoverController extends BasePopoverController {}
+
+        class TooltipController extends BasePopoverController {
+            /** Sets up a tooltip popover show after a delay */
+            scheduleShow(dispatcher?: Event | Element | null): void;
+            /** Applies data-s-tooltip-html-title and title attributes */
+            applyTitleAttributes(): HTMLElement | null;
+        }
+
+        /* end of Stacks classes */
+
+        /* Interfaces */
 
         interface PopoverOptions {
             /** When true, the `click->s-popover#toggle` action will be attached to the controller element or reference element */
@@ -100,6 +95,33 @@ declare global {
             /** Returns the popover currently associated with the controller, or null if one does not exist in the DOM */
             popover: HTMLElement | null;
         }
+
+        interface TooltipOptions {
+            /** The position to place the tooltip */
+            placement: AllPlacements;
+        }
+
+        /* end of interfaces */
+
+        /* Stacks helpers */
+
+        /**
+         * Helper to manually show an s-modal element via external JS
+         * @param element the element the `data-controller="s-modal"` attribute is on
+         */
+        function showModal(element: HTMLElement): void;
+        /**
+         * Helper to manually hide an s-modal element via external JS
+         * @param element the element the `data-controller="s-modal"` attribute is on
+         */
+
+        function hideModal(element: HTMLElement): void;
+        /**
+         * Helper to manually show an s-modal element via external JS
+         * @param element the element the `data-controller="s-modal"` attribute is on
+         * @param show whether to force show/hide the modal; toggles the modal if left undefined
+         */
+        function toggleModal(element: HTMLElement, show?: boolean): void;
 
         /**
          * Helper to manually show an s-popover element via external JS
@@ -147,18 +169,6 @@ declare global {
             include: boolean
         ): void;
 
-        class TooltipController extends BasePopoverController {
-            /** Sets up a tooltip popover show after a delay */
-            scheduleShow(dispatcher?: Event | Element | null): void;
-            /** Applies data-s-tooltip-html-title and title attributes */
-            applyTitleAttributes(): HTMLElement | null;
-        }
-
-        interface TooltipOptions {
-            /** The position to place the tooltip */
-            placement: AllPlacements;
-        }
-
         /**
          * Adds or updates a Stacks tooltip on a given element, initializing the controller if necessary
          * @param element The element to add a tooltip to.
@@ -181,6 +191,8 @@ declare global {
             text: string,
             options?: TooltipOptions
         ): void;
+
+        /* end of Stacks helpers */
     }
 }
 
