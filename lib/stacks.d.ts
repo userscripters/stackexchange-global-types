@@ -1,14 +1,42 @@
-import "@stackoverflow/stacks/lib/ts/stacks";
-import "@stackoverflow/stacks/lib/ts/stimulus";
+import Stimulus from "stimulus";
+
+type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
+// Minimum TypeScript Version: 4.1
+type AllPlacements =
+    | BasicPlacement
+    | `${BasicPlacement}-start`
+    | `${BasicPlacement}-end`;
 
 declare global {
     namespace Stacks {
-        type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
-        // Minimum TypeScript Version: 4.1
-        type AllPlacements =
-            | BasicPlacement
-            | `${BasicPlacement}-start`
-            | `${BasicPlacement}-end`;
+        class StacksController extends Stimulus.Controller {
+            /**
+             * Gets the value of a data attribute in a given element
+             * @param element The element
+             * @param key The attribute
+             */
+            protected getElementData(element: Element, key: string): string | null;
+            /**
+             * Sets the value of a data attribute in a given element
+             * @param element The element
+             * @param key The attribute
+             * @param value The new value
+             */
+            protected setElementData(element: Element, key: string, value: string): void;
+            /**
+             * Remove the data attribute of a given element
+             * @param element The element
+             * @param key The attribute
+             */
+            protected removeElementData(element: Element, key: string): void;
+            /**
+             * Trigger a custom event (on an element)
+             * @param eventName The event name
+             * @param detail The event options/details
+             * @param optionalElement The element to trigger the event on
+             */
+            protected triggerEvent<T>(eventName: string, detail?: T, optionalElement?: Element): CustomEvent<T>;
+        }
 
         class ModalController extends StacksController {
             /** Toggles the visibility of the modal */
