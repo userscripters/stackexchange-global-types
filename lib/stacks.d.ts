@@ -41,12 +41,77 @@ declare global {
         }
 
         class ModalController extends StacksController {
-            /** Toggles the visibility of the modal */
+            static targets: ["modal", "initialFocus"];
+            /**
+             * Toggles the visibility of the modal
+             * @param dispatcher The modal element or an event to get the element from
+             */
             toggle(dispatcher?: Event | Element | null): void;
-            /** Shows the modal */
+            /**
+             * Shows the modal
+             * @param dispatcher The modal element or an event to get the element from
+             */
             show(dispatcher?: Event | Element | null): void;
-            /** Hides the modal */
+            /**
+             * Hides the modal
+             * @param dispatcher The modal element or an event to get the element from
+             */
             hide(dispatcher?: Event | Element | null): void;
+
+            /** Validates the modal settings and attempts to set necessary internal variables */
+            validate(): void;
+            /**
+             * Toggles the visibility of the modal element
+             * @param show Optional parameter that force shows/hides the element or toggles it if left undefined
+             * @param dispatcher The modal element or an event to get the element from
+             */
+            _toggle(show?: boolean, dispatcher?: Event | Element | null): void;
+            /** Listens for the s-modal:hidden event and focuses the returnElement when it is fired */
+            focusReturnElement(): void;
+            /** Remove the element on hide if the `remove-when-hidden` flag is set */
+            removeModalOnHide(): void;
+            /** Gets all elements within the modal that could receive keyboard focus. */
+            getAllTabbables(): HTMLElement[];
+            /**
+             * Returns the first visible element in an array or `undefined` if no elements are visible.
+             * @param elements The list of elements to check
+             */
+            firstVisible(elements: HTMLElement[]): HTMLElement | undefined;
+            /**
+             * Returns the last visible element in an array or `undefined` if no elements are visible.
+             * @param elements The list of elements to check
+             */
+            lastVisible(elements: HTMLElement[]): HTMLElement | undefined;
+            /**
+             * Attempts to shift keyboard focus into the modal.
+             * If elements with `data-s-modal-target="initialFocus"` are present and visible, one of those will be selected.
+             * Otherwise, the first visible focusable element will receive focus.
+             */
+            focusInsideModal(): void;
+            /**
+             * Returns keyboard focus to the modal if it has left or is about to leave.
+             * @param e The keyboard event that triggered the closure
+             */
+            keepFocusWithinModal(e: KeyboardEvent): void;
+            /** Binds global events to the document for hiding popovers on user interaction */
+            bindDocumentEvents(): void;
+            /** Unbinds global events to the document for hiding popovers on user interaction */
+            unbindDocumentEvents(): void;
+            /**
+             * Forces the popover to hide if a user clicks outside of it or its reference element
+             * @param e The click event
+             */
+            hideOnOutsideClick(e: Event): void;
+            /**
+             * Forces the popover to hide if the user presses escape while it, one of its childen, or the reference element are focused
+             * @param e The escape-press keyboard event
+             */
+            hideOnEscapePress(e: KeyboardEvent): void;
+            /**
+             * Determines the correct dispatching element from a potential input
+             * @param dispatcher The event or element to get the dispatcher from
+             */
+            getDispatcher(dispatcher: Event | Element | null): Element;
         }
 
         abstract class BasePopoverController extends StacksController {

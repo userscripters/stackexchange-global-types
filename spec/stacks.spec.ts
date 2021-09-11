@@ -1,3 +1,41 @@
+import { Context } from "stimulus";
+
+const controllerContext = {} as unknown as Context;
+// classes testing
+
+// ----------------------------------
+// Modal controller
+
+const modalController = new Stacks.ModalController(controllerContext);
+
+// $ExpectType void
+modalController.focusReturnElement();
+
+// $ExpectType void
+modalController.show(document.createElement("aside"));
+
+// $ExpectType HTMLElement[]
+modalController.getAllTabbables();
+
+// $ExpectType HTMLElement | undefined
+modalController.lastVisible(modalController.getAllTabbables());
+
+// $ExpectType typeof ModalController
+Stacks.ModalController;
+
+// ----------------------------------
+
+// $ExpectType ["modal", "initialFocus"]
+Stacks.ModalController.targets;
+
+// $ExpectType typeof TooltipController
+Stacks.TooltipController;
+
+// $ExpectType typeof PopoverController
+Stacks.PopoverController;
+
+// helpers testing
+
 const el = document.createElement("div");
 el.id = "testId";
 
@@ -12,12 +50,6 @@ const input = document.createElement("input");
 const tooltipOptions: Stacks.TooltipOptions = {
     placement: "left",
 };
-
-// $ExpectType typeof TooltipController
-Stacks.TooltipController;
-
-// $ExpectType typeof PopoverController
-Stacks.PopoverController;
 
 // $ExpectType void
 Stacks.setTooltipHtml(input, "<strong>important</strong>", tooltipOptions);
