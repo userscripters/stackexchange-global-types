@@ -1,16 +1,20 @@
 diff --git a/node_modules/definitelytyped-header-parser/index.js b/node_modules/definitelytyped-header-parser/index.js
-index 1e98290..71cbbdd 100644
+index 1e98290..df78295 100644
 --- a/node_modules/definitelytyped-header-parser/index.js
 +++ b/node_modules/definitelytyped-header-parser/index.js
-@@ -5,7 +5,7 @@ const pm = require("parsimmon");
+@@ -4,9 +4,9 @@ const assert = require("assert");
+ const pm = require("parsimmon");
  var TypeScriptVersion;
  (function (TypeScriptVersion) {
-     TypeScriptVersion.supported = ["2.8", "2.9",
+-    TypeScriptVersion.supported = ["2.8", "2.9",
 -        "3.0", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9"];
-+        "3.0", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "4.0", "4.1", "4.2", "4.3"];
-     TypeScriptVersion.unsupported = ["2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7"];
+-    TypeScriptVersion.unsupported = ["2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7"];
++    TypeScriptVersion.supported = ["4.1", "4.2", "4.3", "4.4"];
++    TypeScriptVersion.unsupported = ["2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7",
++        "2.8", "2.9", "3.0", "3.1", "3.2", "3.3", "3.4", "3.5", "3.6", "3.7", "3.8", "3.9", "4.0"];
      TypeScriptVersion.all = [...TypeScriptVersion.unsupported, ...TypeScriptVersion.supported];
      TypeScriptVersion.lowest = TypeScriptVersion.supported[0];
+     /** Latest version that may be specified in a `// TypeScript Version:` header. */
 @@ -105,14 +105,14 @@ function parseHeader(text, strict) {
  }
  function headerParser(strict) {
