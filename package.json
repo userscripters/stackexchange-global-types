@@ -5,8 +5,7 @@
     "scripts": {
         "test": "tsd",
         "readme": "generate-readme",
-        "postversion": "bash ./scripts/version.sh",
-        "postinstall": "patch-package"
+        "postversion": "bash ./scripts/version.sh"
     },
     "tsd": {
         "directory": "spec"
