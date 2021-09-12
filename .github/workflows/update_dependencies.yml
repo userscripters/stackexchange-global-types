@@ -25,7 +25,7 @@ jobs:
                   NODE_AUTH_TOKEN: ${{github.token}}
             - name: Update to the latest minor/patch version
               # >3.4.2 of dtslint aren't friends with NPM advisories
-              run: npx npm-check-updates -u --target minor --reject dtslint -e 2
+              run: npx npm-check-updates -u --target minor --reject dtslint
             - name: Install updated dependencies & update lockfile
               if: success()
               run: |
