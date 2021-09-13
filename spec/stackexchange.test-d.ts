@@ -1,10 +1,5 @@
 import { expectError, expectType } from "tsd";
-import StackExchange, {
-    AccountSettings,
-    FlagSettings,
-    MarkdownSettings,
-    SiteSettings,
-} from "../lib/stackexchange";
+import "../lib/stackexchange";
 
 const $modal = $("<div>pretend modal</div>");
 
@@ -40,10 +35,10 @@ expectError(StackExchange.gaReady());
 
 const { settings } = StackExchange;
 
-expectType<AccountSettings>(settings.accounts);
+expectType<StackExchange.AccountSettings>(settings.accounts);
 
-expectType<FlagSettings>(settings.flags);
+expectType<StackExchange.FlagSettings>(settings.flags);
 
-expectType<MarkdownSettings>(settings.markdown);
+expectType<StackExchange.MarkdownSettings>(settings.markdown);
 
-expectType<SiteSettings>(settings.site);
+expectType<StackExchange.SiteSettings>(settings.site);

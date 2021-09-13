@@ -1,5 +1,5 @@
 import { expectError, expectType } from "tsd";
-import CHAT, { UserInformation } from "../lib/chat.js";
+import "../lib/chat";
 
 expectType<boolean>(CHAT.user.canTalkDuringTimeout());
 
@@ -9,7 +9,7 @@ expectType<number>(CHAT.LIVE_CHAT_HOST_ID);
 
 expectType<boolean>(CHAT.IS_MOBILE);
 
-expectType<Promise<UserInformation>>(CHAT.RoomUsers.get(1));
+expectType<Promise<CHAT.UserInformation>>(CHAT.RoomUsers.get(1));
 
 expectType<void>(CHAT.RoomUsers.forceUpdate(1));
 
@@ -23,12 +23,12 @@ expectType<void>(
     )
 );
 
-expectType<UserInformation[]>(CHAT.RoomUsers.all());
+expectType<CHAT.UserInformation[]>(CHAT.RoomUsers.all());
 
 expectType<JQuery<HTMLElement>>(CHAT.RoomUsers.createAvatarImage(1, 8));
 
 const exampleUser = CHAT.RoomUsers.current();
-expectType<UserInformation>(exampleUser);
+expectType<CHAT.UserInformation>(exampleUser);
 
 expectType<string>(exampleUser.email_hash);
 
