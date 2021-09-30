@@ -42,7 +42,7 @@
     },
     "types": "./index.d.ts",
     "dependencies": {
-        "@types/jquery": "^3.5.6",
-        "stimulus": "^3.0.0"
+        "@hotwired/stimulus": "^3.0.0",
+        "@types/jquery": "^3.5.6"
     }
 }
