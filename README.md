@@ -7,7 +7,7 @@
 | Name | @userscripters/stackexchange-global-types |
 | Description | Type definitions for global Stack Exchange objects |
 | License | [GPL-3.0-or-later](https://spdx.org/licenses/GPL-3.0-or-later) |
-| Version | 2.3.0 |
+| Version | 2.3.1 |
 
 # Support
 
