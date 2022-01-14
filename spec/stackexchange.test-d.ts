@@ -42,3 +42,11 @@ expectType<StackExchange.FlagSettings>(settings.flags);
 expectType<StackExchange.MarkdownSettings>(settings.markdown);
 
 expectType<StackExchange.SiteSettings>(settings.site);
+
+const { realtime } = StackExchange;
+
+expectType<boolean>(realtime.pauseQuestionNotifications);
+
+expectType<void>(realtime.debug("message"));
+
+expectType<void>(realtime.genericSubscribe("event", () => void 0));

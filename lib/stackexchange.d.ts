@@ -128,6 +128,50 @@ declare global {
             isAnonymousNetworkWide?: boolean;
         }
 
+        /**
+         * This is considered LegacyJS
+         * @see https://cdn-dev.sstatic.net/Js/full.en.js
+         */
+        interface Realtime {
+            pauseQuestionNotifications: boolean;
+            debug(section: string): void;
+            expandActiveQuestions(): void;
+            expandAnswers(): void;
+            genericSubscribe(subscriptionName: string, callback: (...args: any[]) => void): void;
+            genericUnsubscribe(subscriptionName: string, callback: (...args: any[]) => void): void;
+            init(endpoint: string): void;
+            log(message: { action: string, data: unknown; }): void;
+            reloadPosts(postIds: string[], includeComments?: boolean): Promise<Record<number, JQuery>>;
+            simulate(message: string): void;
+            subscribeToActiveQuestions(
+                sid: string | number,
+                channel: string,
+                noHighlightTags: string[] | undefined,
+                requiredTags: string[] | undefined,
+                formatDateShort: boolean,
+                callback: (...args: any[]) => void
+            ): void;
+            subscribeToCounts(sid: string | number): void;
+            subscribeToReputationNotifications(sid: string | number): void;
+            subscribeToReviewDashboard(sid: string | number): void;
+            subscribeToTopBarNotifications(sid: string | number): void;
+            subscribeToQuestion(sid: string | number, qid: string | number): void;
+            subscribeToUQL(
+                sid: string | number,
+                sort: string,
+                tagQuery: string[],
+                filters: {
+                    noAnswers?: boolean,
+                    hasBounty?: boolean;
+                },
+                suppressedTags: string[]
+            ): void;
+            unsubscribeToQuestion(sid: string | number, qid: string | number): void;
+            updateRelativeDates(): void;
+        }
+
+        const realtime: Realtime;
+
         interface RealtimeInfo {
             /** Whether to listen to active questions via the websocket */
             active: boolean;
