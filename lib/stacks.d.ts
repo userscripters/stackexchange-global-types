@@ -274,12 +274,9 @@ declare global {
         /**
          * Register a Stimulus controller from an old-fashioned (pre-ES6) Javascript object.
          * @param name identifier for this controller
-         * @param controllerDefinition plain JavaScript object that is analogous to the ES6 class
+         * @param controller plain JavaScript object that is analogous to the ES6 class
          */
-        function addController(
-            name: string,
-            controller: ControllerDefinition
-        ): void;
+        function addController(name: string, controller: ControllerDefinition): void;
 
         /* end of Stacks helpers */
         
@@ -288,7 +285,7 @@ declare global {
         /**
          * The Stacks Stimulus application singleton
          */
-        application: Stimulus.Application
+        const application: Stimulus.Application
         
         /* end of Stacks properties */
     }
