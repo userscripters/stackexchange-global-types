@@ -263,7 +263,7 @@ declare global {
         ): void;
         
         /**
-         * Create a Stimulus controller from an old-fashioned (pre-ES6) Javascript object. All own enumerable 
+         * Create a Stimulus controller from an old-fashioned (pre-ES6) JavaScript object. All own enumerable 
          * properties of that object will be made available on the controller prototype, with the exception of
          * the targets property, which will be available on the controller constructor itself, i.e. statically.
          * @param controllerDefinition plain JavaScript object that is analogous to the ES6 class
