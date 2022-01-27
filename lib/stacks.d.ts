@@ -165,6 +165,11 @@ declare global {
             /** The position to place the tooltip */
             placement: AllPlacements;
         }
+        
+        interface ControllerDefinition {
+            [name: string]: any;
+            targets?: string[];
+        }
 
         /* end of interfaces */
 
@@ -256,8 +261,33 @@ declare global {
             text: string,
             options?: TooltipOptions
         ): void;
+        
+        /**
+         * Create a Stimulus controller from an old-fashioned (pre-ES6) JavaScript object. All own enumerable 
+         * properties of that object will be made available on the controller prototype, with the exception of
+         * the targets property, which will be available on the controller constructor itself, i.e. statically.
+         * @param controllerDefinition plain JavaScript object that is analogous to the ES6 class
+         */
+        function createController(
+            controllerDefinition: ControllerDefinition
+        ): typeof StacksController;
+        /**
+         * Register a Stimulus controller from an old-fashioned (pre-ES6) JavaScript object.
+         * @param name identifier for this controller
+         * @param controller plain JavaScript object that is analogous to the ES6 class
+         */
+        function addController(name: string, controller: ControllerDefinition): void;
 
         /* end of Stacks helpers */
+        
+        /* Stacks properties */
+        
+        /**
+         * The Stacks Stimulus application singleton
+         */
+        const application: Stimulus.Application
+        
+        /* end of Stacks properties */
     }
 }
 
