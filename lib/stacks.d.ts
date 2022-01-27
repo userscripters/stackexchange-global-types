@@ -272,7 +272,7 @@ declare global {
             controllerDefinition: ControllerDefinition
         ): typeof StacksController;
         /**
-         * Register a Stimulus controller from an old-fashioned (pre-ES6) Javascript object.
+         * Register a Stimulus controller from an old-fashioned (pre-ES6) JavaScript object.
          * @param name identifier for this controller
          * @param controller plain JavaScript object that is analogous to the ES6 class
          */
