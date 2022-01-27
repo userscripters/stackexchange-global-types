@@ -28,6 +28,10 @@
         {
             "name": "double-beep",
             "url": "https://github.com/double-beep"
+        },
+        {
+            "name": "Martijn Pieters",
+            "url": "https://github.com/mjpieters"
         }
     ],
     "license": "GPL-3.0-or-later",
