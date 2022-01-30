@@ -150,17 +150,6 @@ declare global {
             autoShow?: boolean;
         }
 
-        interface GetPopoverResult {
-            /** Indicates whether or not the element has s-popover in its `data-controller` class */
-            isPopover: boolean;
-            /** Returns the element's existing `PopoverController` or null if it has not been configured yet */
-            controller: PopoverController | null;
-            /** Returns the popover's reference element as would live in `referenceSelector` or null if it is invalid */
-            referenceElement: Element | null;
-            /** Returns the popover currently associated with the controller, or null if one does not exist in the DOM */
-            popover: HTMLElement | null;
-        }
-
         interface TooltipOptions {
             /** The position to place the tooltip */
             placement: AllPlacements;
@@ -220,24 +209,7 @@ declare global {
          * @param element the element that has the `data-controller="s-popover"` attribute.
          * @returns The popover that was attached to the element.
          */
-        function detachPopover(element: Element): GetPopoverResult["popover"];
-        /**
-         * Gets the current state of an element that may be or is intended to be an s-popover controller
-         * so it can be configured either directly or via the DOM.
-         * @param element An element that may have `data-controller="s-popover"`.
-         */
-        function getPopover(element: Element): GetPopoverResult;
-        /**
-         * Adds or removes the controller from an element's [data-controller] attribute without altering existing entries
-         * @param el The element to alter
-         * @param controllerName The name of the controller to add/remove
-         * @param include Whether to add the controllerName value
-         */
-        function toggleController(
-            el: Element,
-            controllerName: string,
-            include: boolean
-        ): void;
+        function detachPopover(element: Element): HTMLElement | null;
 
         /**
          * Adds or updates a Stacks tooltip on a given element, initializing the controller if necessary
