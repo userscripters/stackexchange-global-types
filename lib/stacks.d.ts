@@ -176,13 +176,6 @@ declare global {
 
         function hideModal(element: HTMLElement): void;
         /**
-         * Helper to manually show an s-modal element via external JS
-         * @param element the element the `data-controller="s-modal"` attribute is on
-         * @param show whether to force show/hide the modal; toggles the modal if left undefined
-         */
-        function toggleModal(element: HTMLElement, show?: boolean): void;
-
-        /**
          * Helper to manually show an s-popover element via external JS
          * @param element the element the `data-controller="s-popover"` attribute is on
          */
