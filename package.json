@@ -5,6 +5,7 @@
     "scripts": {
         "test": "tsd",
         "readme": "generate-readme",
+        "preversion": "npm run test",
         "postversion": "bash ./scripts/version.sh"
     },
     "tsd": {
