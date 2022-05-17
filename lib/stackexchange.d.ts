@@ -59,6 +59,13 @@ declare global {
         }
 
         const helpers: {
+            /** Appends a hidden .lightbox to the body */
+            addLightbox(): JQuery;
+            /**
+             * Initializes draggable popups
+             * @deprecated
+             */
+            bindMovablePopups(): void;
             /** Hides any visible toasts from the page */
             hideToasts(): void;
             /**
@@ -72,10 +79,35 @@ declare global {
              */
             parseUrl(url: string): HTMLAnchorElement;
             /**
+             * Displays a banner message.
+             * @param message a string or HTML string
+             * @param type banner type
+             */
+            showBannerMessage(
+                message: string,
+                type: "error" | "info" | "success" | "warning"
+            ): JQuery;
+            /**
              * Shows a Stacks confirmation modal
              * @param modalOptions The modal options
              */
             showConfirmModal(modalOptions: ModalType): Promise<boolean>;
+            /**
+             * Displays a success message.
+             */
+            showErrorMessage(
+                $elem: JQuery,
+                message: string,
+                options: object
+            ): JQuery;
+            /**
+             * Displays a success message.
+             */
+            showInfoMessage(
+                $elem: JQuery,
+                message: string,
+                options: object
+            ): JQuery;
             /**
              * Shows a modal that already exists in the DOM
              * @param elementOrSelector The modal's HTML element or its selector
@@ -84,6 +116,14 @@ declare global {
                 elementOrSelector: string | JQuery | Element | null,
                 displayOptions?: Partial<ShowModalOptions>
             ): void;
+            /**
+             * Displays a success message.
+             */
+            showSuccessMessage(
+                $elem: JQuery,
+                message: string,
+                options: object
+            ): JQuery;
             /**
              * Shows a Stacks toast
              * @param messageHtml The message's HTML content
