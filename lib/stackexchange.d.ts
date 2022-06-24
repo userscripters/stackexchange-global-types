@@ -56,6 +56,8 @@ declare global {
             transientTimeout: number;
             /** An array of action buttons */
             actions: ToastActions[];
+            /** Whether to encode the toast text as HTML (default is false) */
+            useRawHtml: boolean;
         }
 
         const helpers: {
@@ -133,6 +135,13 @@ declare global {
                 messageHtml: string,
                 toastOptions: Partial<ShowToastOptions>
             ): void;
+            /**
+             * Encodes a string replacing ", ' with their HTML equivalents
+             * @param value the given string
+             */
+            htmlEncode(
+                value: string
+            ): string;
         };
 
         // NOTE: optional fields do not appear if the user has logged out
