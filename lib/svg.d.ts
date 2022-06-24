@@ -392,10 +392,20 @@ declare global {
          */
         const Eye: SvgReturn;
         /**
+         * Returns the EyeSm SVG icon
+         * @link https://stackoverflow.design/product/resources/icons/#eyesm
+         */
+        const EyeSm: SvgReturn;
+        /**
          * Returns the EyeOff SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#eyeoff
          */
         const EyeOff: SvgReturn;
+        /**
+         * Returns the EyeOffSm SVG icon
+         * @link https://stackoverflow.design/product/resources/icons/#eyeoffsm
+         */
+        const EyeOffSm: SvgReturn;
         /**
          * Returns the Eyes SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#eyes
@@ -807,6 +817,11 @@ declare global {
          */
         const Mail: SvgReturn;
         /**
+         * Returns the MailSm SVG icon
+         * @link https://stackoverflow.design/product/resources/icons/#mailsm
+         */
+        const MailSm: SvgReturn;
+        /**
          * Returns the Medal SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#medal
          */
@@ -1184,4 +1199,4 @@ declare global {
     }
 }
 
-export {};
+export { };
