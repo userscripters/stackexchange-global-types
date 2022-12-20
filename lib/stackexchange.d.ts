@@ -461,7 +461,7 @@ declare global {
             postId: number;
             success?: (jClicked: JQuery, postId: number, data: VoteData) => void;
             undo?: boolean;
-            voteTypeId: VoteTypeId;
+            voteTypeId: typeof VoteTypeId;
         }
 
         interface VoteCast {
