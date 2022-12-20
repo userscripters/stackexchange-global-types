@@ -402,6 +402,84 @@ declare global {
             site: SiteSettings;
         };
 
+        enum VoteTypeId {
+            "informModerator" = -1,
+            "undoMod" = 0,
+            "acceptedByOwner" = 1,
+            "upMod" = 2,
+            "downMod" = 3,
+            "offensive" = 4,
+            "bookmark" = 5,
+            "close" = 6,
+            "reopen" = 7,
+            "bountyClose" = 9,
+            "deletion" = 10,
+            "undeletion" = 11,
+            "spam" = 12,
+            "reaction1" = 17,
+            "helpful" = 18,
+            "thankYou" = 19,
+            "wellWritten" = 20,
+            "follow" = 21,
+            "reaction2" = 22,
+            "reaction3" = 23,
+            "reaction4" = 24,
+            "reaction5" = 25,
+            "reaction6" = 26,
+            "reaction7" = 27,
+            "reaction8" = 28,
+            "outdated" = 29,
+            "notOutdated" = 30,
+            "preVote" = 31,
+        }
+
+        interface VoteData {
+            Message?: string;
+            Warning?: boolean;
+        }
+
+        interface VoteOptions {
+            $target: JQuery;
+            complete?: () => void;
+            data?: VoteData;
+            error?: (jClicked: JQuery, postId: number, data: VoteData) => void;
+            postId: number;
+            success?: (jClicked: JQuery, postId: number, data: VoteData) => void;
+            undo?: boolean;
+            voteTypeId: VoteTypeId;
+        }
+
+        interface VoteCast {
+            PostId: number
+            VoteTypeId: VoteTypeId
+        }
+
+        interface Vote {
+            /** used on the user's own bookmarks page */
+            bookmark_init(): void;
+            /** used by suggested edits */
+            delete_init(
+                optionalCallback?: (...args: unknown[]) => unknown,
+                optionalFormData?: unknown
+            ): void;
+            election_init(canVote: boolean, votesCast: VoteCast[]): void;
+            /** used by the review dashboard */
+            follow_init(): void;
+            getPostId($el: JQuery): number;
+            highlightExistingVotes(votesCast: VoteCast[]): void;
+            init(votesCast:VoteCast[]): void;
+            /** This was written for an experiment that did not graduate and can be removed. */
+            normalizePostScore(score: number): number;
+            submit(voteOptions:VoteOptions): void;
+            voteTypeIds: VoteTypeId;
+            vote_down($voteButton: JQuery): void;
+            /** used by the review dashboard */
+            vote_init(votesCast:VoteCast[]): void;
+            vote_up($voteButton: JQuery): void;
+        }
+
+        const vote: Vote;
+
         /**
          * Defers execution of a callback until StackExchange is ready
          * @param callback callback to defer
