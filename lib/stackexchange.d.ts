@@ -461,7 +461,7 @@ declare global {
             postId: number;
             success?: (jClicked: JQuery, postId: number, data: VoteData) => void;
             undo?: boolean;
-            voteTypeId: typeof VoteTypeId;
+            voteTypeId: VoteTypeId;
         }
 
         interface VoteCast {
@@ -486,7 +486,7 @@ declare global {
             /** This was written for an experiment that did not graduate and can be removed. */
             normalizePostScore(score: number): number;
             submit(voteOptions:VoteOptions): void;
-            voteTypeIds: VoteTypeId;
+            voteTypeIds: typeof VoteTypeId;
             vote_down($voteButton: JQuery): void;
             /** used by the review dashboard */
             vote_init(votesCast:VoteCast[]): void;
