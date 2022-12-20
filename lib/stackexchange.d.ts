@@ -186,11 +186,20 @@ declare global {
             debug(section: string): void;
             expandActiveQuestions(): void;
             expandAnswers(): void;
-            genericSubscribe(subscriptionName: string, callback: (...args: any[]) => void): void;
-            genericUnsubscribe(subscriptionName: string, callback: (...args: any[]) => void): void;
+            genericSubscribe(
+                subscriptionName: string,
+                callback: (...args: any[]) => void
+            ): void;
+            genericUnsubscribe(
+                subscriptionName: string,
+                callback: (...args: any[]) => void
+            ): void;
             init(endpoint: string): void;
-            log(message: { action: string, data: unknown; }): void;
-            reloadPosts(postIds: string[], includeComments?: boolean): Promise<Record<number, JQuery>>;
+            log(message: { action: string; data: unknown }): void;
+            reloadPosts(
+                postIds: string[],
+                includeComments?: boolean
+            ): Promise<Record<number, JQuery>>;
             simulate(message: string): void;
             subscribeToActiveQuestions(
                 sid: string | number,
@@ -204,18 +213,24 @@ declare global {
             subscribeToReputationNotifications(sid: string | number): void;
             subscribeToReviewDashboard(sid: string | number): void;
             subscribeToTopBarNotifications(sid: string | number): void;
-            subscribeToQuestion(sid: string | number, qid: string | number): void;
+            subscribeToQuestion(
+                sid: string | number,
+                qid: string | number
+            ): void;
             subscribeToUQL(
                 sid: string | number,
                 sort: string,
                 tagQuery: string[],
                 filters: {
-                    noAnswers?: boolean,
+                    noAnswers?: boolean;
                     hasBounty?: boolean;
                 },
                 suppressedTags: string[]
             ): void;
-            unsubscribeToQuestion(sid: string | number, qid: string | number): void;
+            unsubscribeToQuestion(
+                sid: string | number,
+                qid: string | number
+            ): void;
             updateRelativeDates(): void;
         }
 
@@ -494,4 +509,4 @@ declare global {
     }
 }
 
-export { };
+export {};
