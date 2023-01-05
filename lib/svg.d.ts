@@ -707,16 +707,6 @@ declare global {
          */
         const Logo: SvgReturn;
         /**
-         * Returns the LogoEnterprise SVG icon
-         * @link https://stackoverflow.design/product/resources/icons/#logoenterprise
-         */
-        const LogoEnterprise: SvgReturn;
-        /**
-         * Returns the LogoEnterpriseWordmarkSm SVG icon
-         * @link https://stackoverflow.design/product/resources/icons/#logoenterprisewordmarksm
-         */
-        const LogoEnterpriseWordmarkSm: SvgReturn;
-        /**
          * Returns the LogoGlyph SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logoglyph
          */
@@ -741,11 +731,6 @@ declare global {
          * @link https://stackoverflow.design/product/resources/icons/#logoglyphxxs
          */
         const LogoGlyphXxs: SvgReturn;
-        /**
-         * Returns the LogoJobs SVG icon
-         * @link https://stackoverflow.design/product/resources/icons/#logojobs
-         */
-        const LogoJobs: SvgReturn;
         /**
          * Returns the LogoMd SVG icon
          * @link https://stackoverflow.design/product/resources/icons/#logomd
