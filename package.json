@@ -1,6 +1,6 @@
 {
     "name": "@userscripters/stackexchange-global-types",
-    "version": "2.5.2",
+    "version": "2.6.0",
     "description": "Type definitions for global Stack Exchange objects",
     "scripts": {
         "test": "tsd",
