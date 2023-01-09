@@ -11,6 +11,10 @@ type JQueryCss = JQuery.PlainObject<
     string | number | ((this: Element, index: number, value: string) => string | number | void | undefined)
 >;
 
+type XHRMock = {
+    reponseText: string
+};
+
 declare global {
     namespace StackExchange {
         interface ModalType {
@@ -182,7 +186,7 @@ declare global {
         }
 
         interface DelayedReactionObject {
-            trigger: () => void;
+            trigger: (...args: any[]) => void;
             cancel: () => void;
         }
 
@@ -253,7 +257,10 @@ declare global {
                 element: HTMLElement,
                 jMenu: JQuery
             ) => void;
-            // TODO what does predicate() actually do?
+            /**
+             * A function that if when called returns `false`, the popup won't be shown
+             * @param element The original element
+             */
             predicate?: (element: HTMLElement) => void;
         }
 
@@ -373,13 +380,13 @@ declare global {
              * @param options Configuration
              * @returns A `$.Deferred().promise()` that resolves to the jQuery modal element
              */
-            loadModal<T>(
+            loadModal(
                 url: string,
                 options?: Partial<ShowModalOptions> & {
                     /** Error message shown on request error */
                     defaultErrorMessage?: string
                 }
-            ): ReturnType<JQueryDeferred<T>["promise"]>;
+            ): ReturnType<JQueryDeferred<JQuery>["promise"]>;
             /**
              * Tells Stacks to show a popover by calling the stimulus controller directly
              * @param $triggerElement The jQuery popover element
@@ -531,14 +538,14 @@ declare global {
              * and not the full /error page's HTML.
              * @param jqXHR http://api.jquery.com/jQuery.ajax/#jqXHR
              */
-            getLikelyErrorMessage(jqXHR: JQuery.jqXHR): string;
+            getLikelyErrorMessage(jqXHR: ReturnType<JQueryDeferred<XHRMock>["reject"]>): string;
             /*
              * For use with the `getLikelyErrorMessage()` method.
              * Returns a rejected `.Deferred` with the first (and only) argument
              * a mock XHR with `.responseText` property set to `errorMessage`.
              * @param errorMessage Will be set to the resulting object's `.responseText` property
              */
-            getRejectedMockXhr(errorMessage: string): JQuery.DeferredStatic; // TODO FIXME rejected promise
+            getRejectedMockXhr(errorMessage: string): ReturnType<JQueryDeferred<XHRMock>["reject"]>;
             /**
              * When 'enter' is pressed while `$form`'s child textarea has focus, `$form` will be submitted.
              *
@@ -643,7 +650,7 @@ declare global {
                 flags: number,
                 value: boolean,
                 userId?: number
-            ): JQuery.DeferredStatic; // TODO FIXME
+            ): ReturnType<ReturnType<JQueryStatic["post"]>["then"]>;
             /**
               * Toggles a particular preference on/off
               * @param flags The flag/option id
@@ -654,7 +661,7 @@ declare global {
                 flags: number,
                 value: boolean,
                 accountId?: number
-            ): JQuery.DeferredStatic; // TODO FIXME;
+            ): ReturnType<ReturnType<JQueryStatic["post"]>["then"]>;
         };
 
         // NOTE: optional fields do not appear if the user has logged out

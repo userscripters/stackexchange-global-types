@@ -120,8 +120,8 @@ expectType<void>(helpers.removeMessages());
 expectType<void>(helpers.removeMessages(true));
 
 expectType<JQuery[]>([
-    await helpers.loadModal<JQuery>("/url"),
-    await helpers.loadModal<JQuery>(
+    await helpers.loadModal("/url"),
+    await helpers.loadModal(
         "url",
         { returnElements: element }
     ),
@@ -225,10 +225,12 @@ expectType<void[]>([
 ]);
 expectError(helpers.showFancyOverlay({}));
 
-// TODO
-/* DELAYEDREACTION - start */
-/* ----------------------- */
-/* DELAYEDREACTION -  end  */
+const exampleFn = (str: string) => console.log(str);
+const delayed = helpers.DelayedReaction(exampleFn, 100, { sliding: true });
+expectType<void>(delayed.trigger("string"));
+expectType<void>(delayed.cancel());
+expectType<() => void>(delayed.cancel);
+expectType<(...args: any[]) => void>(delayed.trigger);
 
 expectType<void>(helpers.fireAndForget("url"));
 expectError(helpers.fireAndForget());
@@ -252,9 +254,6 @@ expectError(helpers.parseUrl());
 
 expectType<boolean>(helpers.isEmailAddress("example@gmail.com"));
 expectError(helpers.isEmailAddress());
-
-// TODO
-/* getLikelyErrorMessage, getRejectedMockXhr */
 
 expectType<void>(helpers.submitFormOnEnterPress(element));
 expectError(helpers.submitFormOnEnterPress());
@@ -359,9 +358,14 @@ expectError(helpers.tagSeparator());
 expectType<string>(helpers.sanitizeAndSplitTags(element.text(), true, false));
 expectError(helpers.sanitizeAndSplitTags());
 
-// TODO
-/* toggleUserFlags, toggleAccountPreferenceFlags */
-// TODO find what each POST request returns & insert types
+// don't care about the types returned
+// these should just avoid any errors
+helpers.toggleUserFlags(0, true);
+helpers.toggleUserFlags(0, false);
+helpers.toggleAccountPreferenceFlags(0, true);
+helpers.toggleAccountPreferenceFlags(0, false);
+expectError(helpers.toggleUserFlags(0));
+expectError(helpers.toggleAccountPreferenceFlags(0));
 
 // end .helpers
 
