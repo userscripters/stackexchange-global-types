@@ -1,4 +1,4 @@
-import { Context } from "stimulus";
+import { Context } from "@hotwired/stimulus";
 import { expectError, expectType } from "tsd";
 import "../lib/stacks";
 

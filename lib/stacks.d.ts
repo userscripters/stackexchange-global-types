@@ -1,4 +1,4 @@
-import Stimulus from "stimulus";
+import Stimulus from "@hotwired/stimulus";
 
 type BasicPlacement = "auto" | "top" | "right" | "bottom" | "left";
 // Minimum TypeScript Version: 4.1
