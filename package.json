@@ -48,6 +48,6 @@
     "types": "./index.d.ts",
     "dependencies": {
         "@types/jquery": "^3.5.16",
-        "stimulus": "^2.0.0"
+        "stimulus": "^3.2.1"
     }
 }
