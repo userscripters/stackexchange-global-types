@@ -4,6 +4,7 @@
     "description": "Type definitions for global Stack Exchange objects",
     "scripts": {
         "test": "tsd",
+        "build": "exit 0",
         "readme": "generate-readme",
         "preversion": "npm run test",
         "postversion": "bash ./scripts/version.sh"
