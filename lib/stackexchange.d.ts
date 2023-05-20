@@ -4,19 +4,32 @@
 type ShowMessagePositions = "left" | "top" | "right" | "bottom" | "center";
 // not accurate (e.g. would allow "center center")
 type PositionAcceptedValues = `${ShowMessagePositions} ${ShowMessagePositions}`;
-type JQueryHtml = JQuery.htmlString |
-    JQuery.Node |
-    ((this: Element, index: number, oldhtml: JQuery.htmlString) => JQuery.htmlString | JQuery.Node);
+type JQueryHtml =
+    | JQuery.htmlString
+    | JQuery.Node
+    | ((
+          this: Element,
+          index: number,
+          oldhtml: JQuery.htmlString
+      ) => JQuery.htmlString | JQuery.Node);
 type JQueryCss = JQuery.PlainObject<
-    string | number | ((this: Element, index: number, value: string) => string | number | void | undefined)
+    | string
+    | number
+    | ((
+          this: Element,
+          index: number,
+          value: string
+      ) => string | number | void | undefined)
 >;
 
 type XHRMock = {
-    reponseText: string
+    reponseText: string;
 };
 
 declare global {
     namespace StackExchange {
+        const cacheBreakers: Record<string, string>;
+
         interface ModalType {
             /** The modal's (text) title */
             title: string;
@@ -82,7 +95,10 @@ declare global {
 
         interface ShowMessageOptions {
             /** Instead of the 'message' parameter's html, appends this element (or jQuery object) to .message-text */
-            messageElement: JQuery.htmlString | JQuery.TypeOrArray<JQuery.Node> | JQuery<JQuery.Node>;
+            messageElement:
+                | JQuery.htmlString
+                | JQuery.TypeOrArray<JQuery.Node>
+                | JQuery<JQuery.Node>;
             /** Whether the popup can be dismissed (by clicking X or pressing Esc) or last until removed (default is `true`) */
             dismissable: boolean;
             /** Whether the message should fade away on its own after a short while (default is `false`) */
@@ -115,14 +131,18 @@ declare global {
              * Basically, you specify how you want the triangular tip to align with the target. For example, if you want the top
              * left corner at the right center of the target, your position would be `{ my: 'left top', at: 'right center' }`.
              */
-            position: "inside" | "inline" | "toast" | Partial<{
-                my: PositionAcceptedValues;
-                at: PositionAcceptedValues;
-                /** Pixels to move message up/down */
-                offsetTop: number;
-                /** Pixels to move message left/right */
-                offsetLeft: number;
-            }>;
+            position:
+                | "inside"
+                | "inline"
+                | "toast"
+                | Partial<{
+                      my: PositionAcceptedValues;
+                      at: PositionAcceptedValues;
+                      /** Pixels to move message up/down */
+                      offsetTop: number;
+                      /** Pixels to move message left/right */
+                      offsetLeft: number;
+                  }>;
             /** Same as `position.my` */
             tip: PositionAcceptedValues;
             /** Function called after the message has been displayed */
@@ -152,16 +172,16 @@ declare global {
         type ShowMessage = (
             $elem: JQuery | string | HTMLElement,
             message: JQueryHtml | null,
-            options?: Partial<ShowMessageOptions>,
+            options?: Partial<ShowMessageOptions>
         ) => JQuery;
 
         interface ShowStacksNoticeOptions {
-             /** Message will fade out after `transientTimeout` milliseconds */
-             transient: boolean;
-             /** Number of milliseconds to wait before dismissing the notice. Defaults to 10,000 */
-             transientTimeout: number;
-             /** A jQuery object in which to place the message*/
-             target: JQuery
+            /** Message will fade out after `transientTimeout` milliseconds */
+            transient: boolean;
+            /** Number of milliseconds to wait before dismissing the notice. Defaults to 10,000 */
+            transientTimeout: number;
+            /** A jQuery object in which to place the message*/
+            target: JQuery;
         }
 
         interface OverlayOptions {
@@ -243,27 +263,20 @@ declare global {
              * @param element The original element
              * @param jMenu A jQuery object containing the menu element in its final position
              */
-            shown?: (
-                element: HTMLElement,
-                jMenu: JQuery
-            ) => void;
+            shown?: (element: HTMLElement, jMenu: JQuery) => void;
             /**
              * A function that will be called when the popup has been removed.
              * Guaranteed to be called between two calls to `showing()`.
              * @param element The original element
              * @param jMenu A jQuery object containing the menu element, no longer attached to the DOM
              */
-            removed?: (
-                element: HTMLElement,
-                jMenu: JQuery
-            ) => void;
+            removed?: (element: HTMLElement, jMenu: JQuery) => void;
             /**
              * A function that if when called returns `false`, the popup won't be shown
              * @param element The original element
              */
             predicate?: (element: HTMLElement) => void;
         }
-
 
         const helpers: {
             // properties below (some with docs) available at:
@@ -282,10 +295,7 @@ declare global {
              * @param answerCallback
              */
             bindOnHashChange_HighlightDestination(
-                commentCallback: (
-                    commentId: number,
-                    postId: number
-                ) => void,
+                commentCallback: (commentId: number, postId: number) => void,
                 answerCallback?: (answerId: number) => void
             ): void;
             /**
@@ -308,7 +318,7 @@ declare global {
              */
             suggestedTransientTimeout(
                 message: string,
-                isToast?: boolean,
+                isToast?: boolean
             ): number;
             /**
              * Displays an error message to the user
@@ -364,7 +374,7 @@ declare global {
             showStacksNotice(
                 message: JQueryHtml,
                 type?: "success" | "warning" | "danger" | "info",
-                options?: Partial<ShowStacksNoticeOptions>,
+                options?: Partial<ShowStacksNoticeOptions>
             ): JQuery;
             /**
              * Shows a Stacks modal that already exists in the DOM
@@ -384,7 +394,7 @@ declare global {
                 url: string,
                 options?: Partial<ShowModalOptions> & {
                     /** Error message shown on request error */
-                    defaultErrorMessage?: string
+                    defaultErrorMessage?: string;
                 }
             ): ReturnType<JQueryDeferred<JQuery>["promise"]>;
             /**
@@ -411,9 +421,7 @@ declare global {
              * Encodes a string replacing ", ' with their HTML equivalents
              * @param value the given string
              */
-            htmlEncode(
-                value: string
-            ): string;
+            htmlEncode(value: string): string;
             /**
              * Shows a Stacks toast
              * @param messageHtml The message's HTML content
@@ -437,7 +445,7 @@ declare global {
              */
             addSpinner(
                 appendToSelector: string | Element | JQuery,
-                cssProperties?: JQueryCss,
+                cssProperties?: JQueryCss
             ): void;
             /**
              * Creates a Stacks spinner
@@ -448,7 +456,7 @@ declare global {
             addStacksSpinner(
                 appendToSelector: string | Element | JQuery,
                 size?: "xs" | "sm" | "md" | "lg",
-                extraClassNames?: Parameters<JQuery["addClass"]>[0],
+                extraClassNames?: Parameters<JQuery["addClass"]>[0]
             ): void;
             /**
              * GETs the spinner GIF
@@ -504,7 +512,7 @@ declare global {
             DelayedReaction(
                 callback: Function,
                 delay: number,
-                options?: Partial<DelayedReactionOptions>,
+                options?: Partial<DelayedReactionOptions>
             ): DelayedReactionObject;
             /**
              * Makes a POST request supplying the user's fkey and ignoring the output/result
@@ -521,7 +529,7 @@ declare global {
             updateQueryStringParameter(
                 uri: string,
                 key: string,
-                value: string,
+                value: string
             ): string;
             /**
              * Returns an object with hostname and pathname properties parsed from parameter URL
@@ -529,23 +537,27 @@ declare global {
              */
             parseUrl(url: string): HTMLAnchorElement;
             /**
-              * Returns `true` if parameter looks like an email.
-              * @param s *Trimmed* email to test
-              */
+             * Returns `true` if parameter looks like an email.
+             * @param s *Trimmed* email to test
+             */
             isEmailAddress(s: string): boolean;
             /**
              * Returns a short `responseText`, which is most likely a proper error message
              * and not the full /error page's HTML.
              * @param jqXHR http://api.jquery.com/jQuery.ajax/#jqXHR
              */
-            getLikelyErrorMessage(jqXHR: ReturnType<JQueryDeferred<XHRMock>["reject"]>): string;
+            getLikelyErrorMessage(
+                jqXHR: ReturnType<JQueryDeferred<XHRMock>["reject"]>
+            ): string;
             /*
              * For use with the `getLikelyErrorMessage()` method.
              * Returns a rejected `.Deferred` with the first (and only) argument
              * a mock XHR with `.responseText` property set to `errorMessage`.
              * @param errorMessage Will be set to the resulting object's `.responseText` property
              */
-            getRejectedMockXhr(errorMessage: string): ReturnType<JQueryDeferred<XHRMock>["reject"]>;
+            getRejectedMockXhr(
+                errorMessage: string
+            ): ReturnType<JQueryDeferred<XHRMock>["reject"]>;
             /**
              * When 'enter' is pressed while `$form`'s child textarea has focus, `$form` will be submitted.
              *
@@ -599,7 +611,7 @@ declare global {
              * into the equivalent encoded HTML entity
              * @param rawText The string to encode
              */
-            encodeHexHtmlEntities(rawText: string): string
+            encodeHexHtmlEntities(rawText: string): string;
 
             // defined at: https://dev.stackoverflow.com/content/js/full.en.js
             // (not at stub.en.js)
@@ -641,22 +653,22 @@ declare global {
                 allowUpperCase?: boolean
             ): string;
             /**
-              * Toggles a particular user flag on/off
-              * @param flags The flag id
-              * @param value Whether to enable/disable that flag
-              * @param accountId The user's id
-              */
+             * Toggles a particular user flag on/off
+             * @param flags The flag id
+             * @param value Whether to enable/disable that flag
+             * @param accountId The user's id
+             */
             toggleUserFlags(
                 flags: number,
                 value: boolean,
                 userId?: number
             ): ReturnType<ReturnType<JQueryStatic["post"]>["then"]>;
             /**
-              * Toggles a particular preference on/off
-              * @param flags The flag/option id
-              * @param value Whether to enable/disable that preference
-              * @param accountId The user's account id
-              */
+             * Toggles a particular preference on/off
+             * @param flags The flag/option id
+             * @param value Whether to enable/disable that preference
+             * @param accountId The user's account id
+             */
             toggleAccountPreferenceFlags(
                 flags: number,
                 value: boolean,
@@ -900,6 +912,14 @@ declare global {
             currentPasswordRequiredForChangingStackIdPassword: boolean;
         }
 
+        interface CommentsSettings {
+            addButtonSaysSuggestImprovements?: boolean;
+        }
+
+        interface ElectionsSettings {
+            opaVoteResultsBaseUrl: string;
+        }
+
         interface FlagSettings {
             /** Whether retracting comment flags is allowed */
             allowRetractingCommentFlags: boolean;
@@ -907,9 +927,34 @@ declare global {
             allowRetractingFlags: boolean;
         }
 
+        interface IntercomSettings {
+            appId: string;
+            hostBaseUrl: string;
+        }
+
+        interface LegalSettings {
+            oneTrustConfigId: string;
+        }
+
         interface MarkdownSettings {
             /** Whether table formatting is allowed */
             enableTables: boolean;
+        }
+
+        interface MentionsSettings {
+            maxNumUsersInDropdown: number;
+        }
+
+        interface PathsSettings {
+            jQueryUICSSPath: string;
+            jQueryUIJSPath: string;
+        }
+
+        interface QuestionsSettings {
+            enableQuestionTitleLengthLiveWarning: boolean;
+            enableSavesFeature: boolean;
+            maxTitleSize: number;
+            questionTitleLengthStartLiveWarningChars: number;
         }
 
         interface SiteSettings {
@@ -925,16 +970,66 @@ declare global {
             styleCode: boolean;
         }
 
+        interface SnippetsSettings {
+            renderDomain: string;
+            snippetsEnabled: boolean;
+        }
+
+        interface SubscriptionsSettings {
+            defaultBasicMaxTrueUpSeats: number;
+            defaultFreemiumMaxTrueUpSeats: number;
+            defaultMaxTrueUpSeats: number;
+        }
+
+        interface TopBarSettings {
+            enableInboxManagement: boolean;
+        }
+
         /** Site settings */
         const settings: {
             /** Constants related to the current StackExchange account */
             accounts: AccountSettings;
+            comments: CommentsSettings;
+            elections: ElectionsSettings;
             /** Constants related to flags */
             flags: FlagSettings;
+            intercom: IntercomSettings;
+            legal: LegalSettings;
             /** Constants related to the markdown parser */
             markdown: MarkdownSettings;
+            mentions: MentionsSettings;
+            paths: PathsSettings;
+            questions: QuestionsSettings;
+            search: {};
+            snippets: SnippetsSettings;
             /** Constants related to the current site */
             site: SiteSettings;
+            subscriptions: SubscriptionsSettings;
+            tags: {};
+            tobBar: TopBarSettings;
+            userMessaging: {};
+        };
+
+        const sidebar: {
+            /**
+             * When Post Collections are enabled on the current site, the sidebar will render
+             * StackOverflow/Views/PostCollections/Partials/SidebarWidget.cshtml and it will call this.
+             */
+            initCollectionWidget(postId: string): void;
+        };
+
+        /** Stack Snippets */
+        const snippets: {
+            init(): void;
+            initSnippetRenderer(): void;
+            makeSnippets(text: string): string;
+            renderer?(
+                snippetCode: string,
+                hide: boolean,
+                console: boolean,
+                babel: boolean
+            ): string;
+            redraw?(): void;
         };
 
         enum VoteTypeId {
@@ -979,14 +1074,18 @@ declare global {
             data?: VoteData;
             error?: (jClicked: JQuery, postId: number, data: VoteData) => void;
             postId: number;
-            success?: (jClicked: JQuery, postId: number, data: VoteData) => void;
+            success?: (
+                jClicked: JQuery,
+                postId: number,
+                data: VoteData
+            ) => void;
             undo?: boolean;
             voteTypeId: VoteTypeId;
         }
 
         interface VoteCast {
-            PostId: number
-            VoteTypeId: VoteTypeId
+            PostId: number;
+            VoteTypeId: VoteTypeId;
         }
 
         interface Vote {
@@ -1002,18 +1101,42 @@ declare global {
             follow_init(): void;
             getPostId($el: JQuery): number;
             highlightExistingVotes(votesCast: VoteCast[]): void;
-            init(votesCast:VoteCast[]): void;
+            init(votesCast: VoteCast[]): void;
             /** This was written for an experiment that did not graduate and can be removed. */
             normalizePostScore(score: number): number;
-            submit(voteOptions:VoteOptions): void;
+            submit(voteOptions: VoteOptions): void;
             voteTypeIds: typeof VoteTypeId;
             vote_down($voteButton: JQuery): void;
             /** used by the review dashboard */
-            vote_init(votesCast:VoteCast[]): void;
+            vote_init(votesCast: VoteCast[]): void;
             vote_up($voteButton: JQuery): void;
         }
 
         const vote: Vote;
+
+        interface VoteBountyInitOptions {
+            canOpenBounty?: boolean;
+            hasOpenBounty?: boolean;
+        }
+
+        const vote_bounty: {
+            init(options: VoteBountyInitOptions): void;
+        };
+
+        const vote_closingAndFlagging: {
+            close_afterLoadListOriginals(container: JQuery<Element>): void;
+            close_initDuplicateSubPane(): void;
+            init(options: object): void;
+            showReopenConfirmation(callback: () => void): void;
+            updateCloseLinkCount(
+                json: {
+                    Count?: number;
+                    Message?: string;
+                    isRecommendClose?: boolean;
+                },
+                closeLink: Element
+            ): void;
+        };
 
         /**
          * Defers execution of a callback until StackExchange is ready
