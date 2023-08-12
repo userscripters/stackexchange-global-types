@@ -48,8 +48,8 @@
     },
     "types": "./index.d.ts",
     "dependencies": {
-        "@hotwired/stimulus": "^3.2.1",
-        "@stackoverflow/stacks": "^1.10.1",
+        "@hotwired/stimulus": "^3.2.2",
+        "@stackoverflow/stacks": "^1.10.2",
         "@types/jquery": "^3.5.16"
     }
 }
