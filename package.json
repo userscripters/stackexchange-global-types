@@ -43,7 +43,7 @@
     "homepage": "https://github.com/userscripters/stackexchange-global-types#readme",
     "devDependencies": {
         "@userscripters/generate-readme": "^2.3.1",
-        "tsd": "^0.28.1",
+        "tsd": "^0.29.0",
         "typescript": "^5.2.2"
     },
     "types": "./index.d.ts",
