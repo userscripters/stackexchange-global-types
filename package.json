@@ -43,13 +43,13 @@
     "homepage": "https://github.com/userscripters/stackexchange-global-types#readme",
     "devDependencies": {
         "@userscripters/generate-readme": "^3.0.2",
-        "tsd": "^0.30.4",
+        "tsd": "^0.30.7",
         "typescript": "^5.3.3"
     },
     "types": "./index.d.ts",
     "dependencies": {
         "@hotwired/stimulus": "^3.2.2",
-        "@stackoverflow/stacks": "^2.1.1",
+        "@stackoverflow/stacks": "^2.2.0",
         "@types/jquery": "^3.5.29"
     }
 }
