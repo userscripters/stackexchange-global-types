@@ -44,7 +44,7 @@
     "devDependencies": {
         "@userscripters/generate-readme": "^3.0.2",
         "tsd": "^0.31.0",
-        "typescript": "^5.4.4"
+        "typescript": "^5.4.5"
     },
     "types": "./index.d.ts",
     "dependencies": {
