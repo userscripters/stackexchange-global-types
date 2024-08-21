@@ -729,7 +729,7 @@ declare global {
             init(endpoint: string): void;
             log(message: { action: string; data: unknown }): void;
             reloadPosts(
-                postIds: string[],
+                postIds: number[],
                 includeComments?: boolean
             ): Promise<Record<number, JQuery>>;
             simulate(message: string): void;

@@ -402,3 +402,5 @@ expectType<boolean>(realtime.pauseQuestionNotifications);
 expectType<void>(realtime.debug("message"));
 
 expectType<void>(realtime.genericSubscribe("event", () => void 0));
+
+expectError(realtime.reloadPosts(["1234", "32"]));
