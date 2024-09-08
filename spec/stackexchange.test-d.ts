@@ -391,6 +391,8 @@ expectType<StackExchange.AccountSettings>(settings.accounts);
 
 expectType<StackExchange.FlagSettings>(settings.flags);
 
+expectType<number>(StackExchange.settings.image.maxImageUploadSizeInBytes);
+
 expectType<StackExchange.MarkdownSettings>(settings.markdown);
 
 expectType<StackExchange.SiteSettings>(settings.site);

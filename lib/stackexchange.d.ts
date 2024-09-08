@@ -927,6 +927,13 @@ declare global {
             allowRetractingFlags: boolean;
         }
 
+        interface ImageSettings {
+            /** Maximum upload size of an animated gif (10 MiB). */
+            maxImageUploadSizeInBytesAnimatedGif: number;
+            /** Maximum upload size of an image (2 MiB). */
+            maxImageUploadSizeInBytes: number;
+        }
+
         interface IntercomSettings {
             appId: string;
             hostBaseUrl: string;
@@ -993,6 +1000,8 @@ declare global {
             elections: ElectionsSettings;
             /** Constants related to flags */
             flags: FlagSettings;
+            /** Constants related to image sizes */
+            image: ImageSettings;
             intercom: IntercomSettings;
             legal: LegalSettings;
             /** Constants related to the markdown parser */
