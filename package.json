@@ -50,6 +50,6 @@
     "dependencies": {
         "@hotwired/stimulus": "^3.2.2",
         "@stackoverflow/stacks": "^2.5.7",
-        "@types/jquery": "^3.5.31"
+        "@types/jquery": "^3.5.32"
     }
 }
